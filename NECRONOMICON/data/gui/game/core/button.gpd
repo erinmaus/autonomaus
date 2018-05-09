@@ -1,0 +1,138 @@
+button[text-button]: {
+	repeat {
+		image button-background;
+		image button-border;
+	} any;
+	.value: text(shadowed: false, break_on_color: true) *;
+};
+
+button[shadowed-text-button]: {
+	repeat {
+		image button-background;
+		image button-border;
+	} any;
+	.value: text(shadowed: true) *;
+};
+
+button[scroll-button]: {
+	.value: {
+		image button[scroll-vertical-button];
+		image button[scroll-horizontal-button];
+	} any;
+};
+
+button[configure-button]: {
+	.value: {
+		repeat image button[configure-button];
+		repeat image configure-icon;
+	} any;
+};
+
+button[lock-button]: {
+	.value: repeat image button[lock-button];
+};
+
+button[minimize-button]: {
+	.value: repeat image button[minimize-button];
+};
+
+button[info-button]: {
+	optional image button-background;
+	.value: repeat image button[info-button];
+};
+
+button[close-button]: {
+	optional image button-background;
+	.value: repeat image button[close-button];
+};
+
+button[logout-button]: {
+	optional image button-background;
+	.value: repeat image button[logout-button];
+};
+
+button[plus-button]: {
+	optional image button-background;
+	.value: repeat image button[plus-button];
+};
+
+button[minus-button]: {
+	optional image button-background;
+	.value: repeat image button[minus-button];
+};
+
+button[filter-button]: {
+	.value: {
+		repeat image button[filter-button];
+		repeat image filter-icon;
+	} any;
+};
+
+button[scroll-vertical-button]: {
+	image button[scroll-vertical-button];
+};
+
+button[scroll-horizontal-button]: {
+	image button[scroll-horizontal-button];
+};
+
+button[scroll-slider-button]: {
+	repeat image button[scroll-slider-button];
+};
+
+button[vertical-scroll-bar, scroll-button]: {
+	optional repeat image button-border;
+	optional repeat image button-background[scroll-button];
+
+	invert peek widget button[scroll-slider-button];
+
+	.scroll-down-button: widget button[scroll-vertical-button];
+	.scroll-up-button: widget button[scroll-vertical-button];
+	.scroll-slider-button: widget button[scroll-slider-button];
+};
+
+button[vertical-scroll-bar, scroll-button]: {
+	optional repeat image button-border;
+	optional repeat image button-background[scroll-button];
+	
+	.scroll-slider-button: widget button[scroll-slider-button];
+	.scroll-up-button: widget button[scroll-vertical-button];
+	.scroll-down-button: widget button[scroll-vertical-button];
+};
+
+button[horizontal-scroll-bar, scroll-button]: {
+	optional skip repeat image button-border;
+	optional repeat image button-background[scroll-button];
+
+	.scroll-slider-button: widget button[scroll-slider-button];
+	.scroll-left-button: widget button[scroll-horizontal-button];
+	.scroll-right-button: widget button[scroll-horizontal-button];
+};
+
+button[small-button, image-button]: {
+	repeat image button-background[small-button];
+	.value: image *;
+};
+
+button[image-button]: {
+	repeat {
+		image button-border;
+		image button-background;
+	} any;
+	.value: image *;
+};
+
+button[text-button]: {
+	repeat image button-border;
+	.value: text(shadowed: true) *;
+};
+
+button[big-text-button]: {
+	repeat image button-background[big-button];
+	.value: optional text(shadowed: false) *;
+};
+
+button[big-text-button, shadowed]: {
+	repeat image button-background[big-button];
+	.value: optional text(shadowed: true) *;
+};

@@ -1,0 +1,47 @@
+EIZNEBAHN
+================================================================================
+EIZNEBAHN receive requests to move the mouse from RESIST clients and then
+generates lifelike mouse movements. It also handles keyboard input.
+
+The name is a bastardization of the German word for railroad, eisenbahn. It
+invokes a sense of invincibility. Right?
+
+Components
+================================================================================
+Deadhand
+--------------------------------------------------------------------------------
+- Presents various widgets to click on and logs mouse movement
+- Generates report on collected data
+
+Pianoman
+--------------------------------------------------------------------------------
+- Logs keyboard input to generate report
+
+Eiznebahn
+--------------------------------------------------------------------------------
+- RESIST client
+- Generates realistic mouse movements
+- Generates keyboard input
+
+Revolution
+--------------------------------------------------------------------------------
+- Utility library to wrap platform-specific fake input and window management
+
+License
+================================================================================
+[bk]door.maus reserves all rights to EIZNEBAHN.
+
+Copyright
+================================================================================
+Copyright 2016 [bk]door.maus.
+
+Look, but don't touch. And remember... Feed your head, feed your head.
+
+Dedication
+================================================================================
+Tenna, paraphrased from Jhonen Vasquez's comic *I Feel Sick*:
+
+> 'EAT OR DIE'
+>
+> It used to be "Eat or Don't", but they weren't making money. The options make
+> the decision easier, I think.

@@ -1,0 +1,21 @@
+menu-option[right-click]: {
+	.text: text(shadowed: true) classic-font;
+	optional {
+		.icons[]: {
+			invert peek image classic-font;
+			image *;
+		};
+	};
+};
+
+menu[right-click]: {
+	.border: repeat image menu-border;
+	.title: text(shadowed: true) classic-font;
+	.background: size * *;
+	optional {
+		.hover: color #285970ff;
+	};
+	.border: repeat image menu-border;
+	.cancel: text(shadowed: true) classic-font;
+	.options[]: widget menu-option[right-click];
+};

@@ -1,0 +1,77 @@
+features.anvil:
+  names:
+    - anvil
+features.bank:
+  names:
+    - bank booth
+    - bank chest
+    - chest
+  actions:
+    bank:
+      - bank bank booth
+      - use bank chest
+      - bank chest
+    collect:
+      - collect bank booth
+      - collect bank chest
+features.furnace:
+  names:
+    - furnace
+features.range:
+  names:
+    - cooking range
+    - range
+  actions:
+    cook:
+      - cook-at range
+machines.lever:
+  names:
+    - lever
+  spray:
+    offset-x: 0
+    offset-y: 512
+    offset-z: 0
+    radius: 128
+plants.trees.common:
+  names:
+    - tree
+plants.trees.magic:
+  names:
+    - magic tree
+plants.trees.maple:
+  names:
+    - maple tree
+plants.trees.oak:
+  names:
+    - oak tree
+plants.trees.willow:
+  names:
+    - willow tree
+plants.trees.yew:
+  names:
+    - yew tree
+internal.portal_down:
+  spray:
+    offset-x: 0
+    offset-y: 128
+    offset-z: 0
+    radius: 256
+  actions:
+    use:
+      - climb-down
+internal.portal_up:
+  actions:
+    use:
+      - climb-up
+internal.door:
+  spray:
+    # X & Y are modified by WalkCortex.
+    offset-x: 0
+    offset-y: 384
+    offset-z: 0
+    radius: 64
+  actions:
+    open:
+      - open
+    close:
+      - close

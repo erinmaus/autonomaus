@@ -1,0 +1,5 @@
+# These files are generated during the build process.
+calls.cpp
+glTrace.cpp.inl
+immediateDispatch.cpp
+traceBuilder.cpp.inl

@@ -1,0 +1,34 @@
+PRINCIPLE
+================================================================================
+PRINCIPLE renders scene data exported by ZANZIBAR to enable quick extraction of
+resources for NECRONOMICON.
+
+Components
+================================================================================
+Zeitgeist
+--------------------------------------------------------------------------------
+- Receives commands via RESIST to render things
+
+Poltergeist
+--------------------------------------------------------------------------------
+- Provides GUI to view objects in scene
+- Sends render commands to Zeitgeist
+- Can export data to formats understood by NECRONOMICON
+
+License
+================================================================================
+[bk]door.maus reserves all rights to PRINCIPLE.
+
+Dedication
+================================================================================
+*Wat*, from Laibach's album *Wat*:
+
+> Mechanical to digital
+>
+> From poltergeist to zeitgeist
+>
+> From God's will to evil
+>
+> And from super stars to the anti-christ
+>
+> We are time

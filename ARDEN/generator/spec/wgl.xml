@@ -1,0 +1,121 @@
+<registry>
+	<extensions>
+		<extension name="WGL" supported="gl">
+		<require>
+			<command name="wglCopyContext" />
+			<command name="wglCreateContext" />
+			<command name="wglCreateLayerContext" />
+			<command name="wglDeleteContext" />
+			<command name="wglDescribeLayerPlane" />
+			<command name="wglGetCurrentContext" />
+			<command name="wglGetCurrentDC" />
+			<command name="wglGetProcAddress" />
+			<command name="wglMakeCurrent" />
+			<command name="wglShareLists" />
+			<command name="wglUseFontBitmapsA" />
+			<command name="wglUseFontBitmapsW" />
+			<command name="wglGetLayerPaletteEntries" />
+			<command name="wglRealizeLayerPalette" />
+			<command name="wglSetLayerPaletteEntries" />
+			<command name="wglSwapLayerBuffers" />
+			<command name="wglUseFontOutlines" />
+		</require>
+		</extension>
+	</extensions>
+	<commands>
+		<command>
+			<proto><ptype>BOOL</ptype> <name>wglCopyContext</name></proto>
+			<param><ptype>HGLRC</ptype> <name>hglrcSrc</name></param>
+			<param><ptype>HGLRC</ptype> <name>hglrcDst</name></param>
+			<param><ptype>UINT</ptype> <name>mask</name></param>
+		</command>
+		<command>
+			<proto><ptype>HGLRC</ptype> <name>wglCreateContext</name></proto>
+			<param><ptype>HDC</ptype> <name>hdc</name></param>
+		</command>
+		<command>
+			<proto><ptype>HGLRC</ptype> <name>wglCreateLayerContext</name></proto>
+			<param><ptype>HDC</ptype> <name>hdc</name></param>
+			<param><ptype>int</ptype> <name>iLayerPlane</name></param>
+		</command>
+		<command>
+			<proto><ptype>BOOL</ptype> <name>wglDeleteContext</name></proto>
+			<param><ptype>HGLRC</ptype> <name>hglrc</name></param>
+		</command>
+		<command>
+			<proto><ptype>BOOL</ptype> <name>wglDescribeLayerPlane</name></proto>
+			<param><ptype>HDC</ptype> <name>hdc</name></param>
+			<param><ptype>int</ptype> <name>iPixelFormat</name></param>
+			<param><ptype>int</ptype> <name>iLayerPlane</name></param>
+			<param><ptype>UINT</ptype> <name>nBytes</name></param>
+			<param><ptype>LPLAYERPLANEDESCRIPTOR</ptype> <name>plpd</name></param>
+		</command>
+		<command>
+			<proto><ptype>HGLRC</ptype> <name>wglGetCurrentContext</name></proto>
+		</command>
+		<command>
+			<proto><ptype>HDC</ptype> <name>wglGetCurrentDC</name></proto>
+		</command>
+		<command>
+			<proto><ptype>BOOL</ptype>  <name>wglMakeCurrent</name></proto>
+			<param><ptype>HDC</ptype> <name>hdc</name></param>
+			<param><ptype>HGLRC</ptype> <name>hglrc</name></param>
+		</command>
+		<command>
+			<proto><ptype>BOOL</ptype> <name>wglShareLists</name></proto>
+			<param><ptype>HGLRC</ptype> <name>hglrc1</name></param>
+			<param><ptype>HGLRC</ptype> <name>hglrc2</name></param>
+		</command>
+		<command>
+			<proto><ptype>BOOL</ptype> <name>wglUseFontBitmapsA</name></proto>
+			<param><ptype>HDC</ptype> <name>hdc</name></param>
+			<param><ptype>DWORD</ptype> <name>first</name></param>
+			<param><ptype>DWORD</ptype> <name>count</name></param>
+			<param><ptype>DWORD</ptype> <name>base</name></param>
+		</command>
+		<command>
+			<proto><ptype>BOOL</ptype> <name>wglUseFontBitmapsW</name></proto>
+			<param><ptype>HDC</ptype> <name>hdc</name></param>
+			<param><ptype>DWORD</ptype> <name>first</name></param>
+			<param><ptype>DWORD</ptype> <name>count</name></param>
+			<param><ptype>DWORD</ptype> <name>base</name></param>
+		</command>
+		<command>
+			<proto><ptype>int</ptype> <name>wglGetLayerPaletteEntries</name></proto>
+			<param><ptype>HDC</ptyoe> <name>hdc</name></param>
+			<param><ptype>int</ptyoe> <name>iLayerPlane</name></param>
+			<param><ptype>int</ptyoe> <name>iStart</name></param>
+			<param><ptype>int</ptyoe> <name>cEntries</name></param>
+			<param><ptype>COLORREF*</ptyoe> <name>pcr</name></param>
+		</command>
+		<command>
+			<proto><ptype>BOOL</ptype> <name>wglRealizeLayerPalette</name></proto>
+			<param><ptype>HDC</ptyoe> <name>hdc</name></param>
+			<param><ptype>int</ptyoe> <name>iLayerPlane</name></param>
+			<param><ptype>BOOL</ptyoe> <name>bRealize</name></param>
+		</command>
+		<command>
+			<proto><ptype>int</ptype> <name>wglSetLayerPaletteEntries</name></proto>
+			<param><ptype>HDC</ptyoe> <name>hdc</name></param>
+			<param><ptype>int</ptyoe> <name>iLayerPlane</name></param>
+			<param><ptype>int</ptyoe> <name>iStart</name></param>
+			<param><ptype>int</ptyoe> <name>cEntries</name></param>
+			<param><ptype>const COLORREF*</ptyoe> <name>pcr</name></param>
+		</command>
+		<command>
+			<proto><ptype>BOOL</ptype> <name>wglSwapLayerBuffers</name></proto>
+			<param><ptype>HDC</ptyoe> <name>hdc</name></param>
+			<param><ptype>UINT</ptyoe> <name>fuPlanes</name></param>
+		</command><command>
+			<proto><ptype>BOOL</ptype> <name>wglUseFontOutlines</name></proto>
+			<param><ptype>HDC</ptype> <name>hdc</name></param>
+			<param><ptype>DWORD</ptype> <name>first</name></param>
+			<param><ptype>DWORD</ptype> <name>count</name></param>
+			<param><ptype>DWORD</ptype> <name>listBase</name></param>
+			<param><ptype>FLOAT</ptype> <name>deviation</name></param>
+			<param><ptype>FLOAT</ptype> <name>extrusion</name></param>
+			<param><ptype>int</ptype> <name>format</name></param>
+			<param><ptype>LPGLYPHMETRICSFLOAT</ptype> <name>lpgmf</name></param>
+		</command>
+	</commands>
+</registry>

@@ -1,0 +1,151 @@
+button[chat-button]: {
+	.icon: image *[chat-icon];
+};
+
+chat-pop-up[pop-up]: {
+	.background: image panel-background;
+	.options[]: {
+		.text: text small-font;
+		.icon: image *[chat-icon];
+	};
+	.border: repeat image panel-border;
+};
+
+chat-panel-content[panel-content]: {
+	.background: repeat image panel-background;
+
+	.header: {
+		.maximized: {
+			.toggle: image minus-icon;
+
+			.buttons[]: {
+				optional skip image chat-separator-icon;
+				{
+					widget button[chat-button];
+					widget button[configure-button];
+				} any;
+			};
+
+			optional skip image chat-separator-icon;
+		};
+
+		.minimized: {
+			.toggle: image plus-icon;
+		};
+
+		.slim: {
+			.filter: widget button[filter-button];
+			.configure: widget button[configure-button];
+		};
+	} any;
+
+	skip repeat image panel-border;
+
+	.display-name: text(shadowed: true) small-font;
+	.quick-chat-button: widget button[chat-button];
+	.prompt: text(shadowed: true) small-font;
+
+	optional {
+		.log[]: {
+			peek size * 13;
+			text(shadowed: true, break_on_newline: false) small-font;
+			optional {
+				{
+					.quick-chat: image chat-quick-icon;
+					.icon: {
+						invert peek image small-font;
+						image *;
+						peek image small-font;
+					};
+				} any;
+				text(shadowed: true, break_on_newline: false) small-font;
+			};
+		};
+	};
+
+	optional skip repeat image small-font;
+
+	.scroll-bar: widget button[vertical-scroll-bar];
+};
+
+chat-panel-border[quick-chat]: {
+	repeat {
+		peek color #696969ff;
+		{
+			size * 1;
+			size * 2;
+			size 1 *;
+			size 2 *;
+		} any;
+	};
+};
+
+chat-panel-section[quick-chat, quick-chat-category-section]: {
+	optional {
+		.selection-cursor: {
+			color #577e45ff;
+			color #969777ff;
+		} any;
+	};
+
+	skip optional widget chat-panel-border[quick-chat];
+
+	.options[]: {
+		.value: text(shadowed: true) small-font;
+		image quick-chat-arrow-icon;
+	};
+
+	optional {
+		.options[]: {
+			.value: text(shadowed: true) small-font;
+		};
+	};
+};
+
+chat-panel-section[quick-chat, quick-chat-tail-section]: {
+	optional {
+		.selection-cursor: {
+			color #577e45ff;
+			color #969777ff;
+		} any;
+	};
+
+	skip widget chat-panel-border[quick-chat];
+
+	.options[]: text(shadowed: true) small-font;
+};
+
+chat-panel-section[quick-chat, search-prompt]: {
+	.prompt: text(shadowed: true) small-font;
+
+	optional {
+		.selection-cursor: color #577e45ff;
+	};
+
+	optional {
+		.results[]: text(shadowed: true) small-font;
+	};
+};
+
+chat-panel-content[panel-content, quick-chat]: {
+	.background: repeat image panel-background;
+	
+	.prompt[]: {
+		text(shadowed: true) small-font;
+		optional image quick-chat-arrow-icon;
+	};
+
+	.close-button: widget button[close-button];
+	.info-button: widget button[info-button];
+
+	skip widget chat-panel-border[quick-chat];
+
+	.content: {
+		{
+			.categories[]: widget chat-panel-section[quick-chat, quick-chat-category-section];
+			.options: optional widget chat-panel-section[quick-chat, quick-chat-tail-section];
+		};
+		
+		widget chat-panel-section[quick-chat, search-prompt];
+	} any;
+};

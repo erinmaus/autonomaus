@@ -1,0 +1,94 @@
+# Usage
+ARDEN is a collection of libraries intended to be loaded into the host, most
+often `[R...E]`. Various settings are controlled by environment variables.
+
+## General
+The hooking process is rather straight-forward:
+
+1. Ganymede is loaded into the host (either via `LD_LIBRARY_PATH` or
+  `LD_PRELOAD`; see below).
+2. Ganymede reads some environment variables to load either Celia or Rosalind.
+3. OpenGL calls are forward to Celia or Rosalind as appropriate.
+
+## Loading ARDEN
+There are some critical environment variables:
+
+* `ARDEN_ROSALIND_LIBRARY`: Fully-qualified path to the Rosalind library
+  (normally `$HDT_LOCAL_ROOT/lib/libRosalind.so`).
+* `ARDEN_CELIA_LIBRARY`: Fully-qualified path to the Celia library (normally
+  `$HDT_LOCAL_ROOT/lib/libCelia.so`).
+* `ARDEN_OPENGL_LIBRARY`: Fully-qualified path to the system OpenGL library.
+  This is platform-specific. Can be found using `locate libGL.so` from a shell.
+  If graphics drivers are installed, this should point to the vendor OpenGL
+  library, not MESA.
+
+(`ARDEN_ROSALIND_LIBRARY` need not be set if just using Celia. In simple terms,
+either `ARDEN_ROSALIND_LIBRARY` or `ARDEN_CELIA_LIBRARY` should be set, but not
+both. Rosalind should be loaded into the Celia client, if desired, but not into
+the host while Celia is also loaded.)
+
+Other environment variables include:
+
+* `RESIST_ADDRESS`: Address of RESIST server. Defaults to 127.0.0.1 if unset.
+* `RESIST_PORT`: Port to connect RESIST server. Defaults to 18176 if unset.
+* `ARDEN_ROSALIND_HEADLESS`: Whether or not to no-op 'unimportant' draw calls.
+  Whether or not a draw call is important is determined by Rosalind. The value
+  this is set to doesn't matter, just that it's set.
+* `ARDEN_ROSALIND_DRAW_INTERVAL`: The maximum frame time, in milliseconds. This
+  can be used to throttle the FPS when `ARDEN_ROSALIND_HEADLESS` is set. If
+  unset, defaults to 0--that is, no throttling.
+* `ARDEN_ROSALIND_ALWAYS_EMIT_DRAW`: Always emit advanced draws (i.e.,
+  `draw_enabled`/`draw_disabled` combos) each frame. This can be incredibly slow
+  and listeners responding to ARDEN events can quickly become backlogged.
+
+There are two ways to load ARDEN into the host, depending on its OpenGL
+extension mechanism.
+
+### Via `LD_LIBRARY_PATH`
+For the standard `[R...E]` client, the OpenGL extension mechanism doesn't load
+the hooks if using the alternate method (see "Via `LD_PRELOAD`" below).
+
+Ensure `$HDT_LOCAL_ROOT/lib/arden` has symbolic links to libGanymede like so:
+
+```
+lrwxrwxr-x  1 bkdoormaus  bkdoormaus  17 Nov 17 11:59 libGL.so -> ../libGanymede.so
+lrwxrwxr-x  1 bkdoormaus  bkdoormaus  17 Nov 17 11:59 libGL.so.1 -> ../libGanymede.so
+lrwxrwxr-x  1 bkdoormaus  bkdoormaus  17 Feb 26 09:41 libGL.so.1.2.0 -> ../libGanymede.so
+```
+
+Export `LD_LIBRARY_PATH` like so:
+
+```
+export LD_LIBRARY_PATH="${HDT_LOCAL_ROOT}/lib/arden:${LD_LIBRARY_PATH}"
+```
+
+When running the host, Ganymede should be loaded.
+
+### Via `LD_PRELOAD`
+For the Celia forwarder, this is the preferred method. Simply ensure libGanymede
+is in `LD_PRELOAD`:
+
+```
+export LD_PRELOAD="${HDT_LOCAL_ROOT}/lib/libGanymede.so"
+```
+
+## Celia client
+The Celia client allows running `[R...E]` in a virtual machine without GPU
+pass-through. OpenGL calls are marshaled over a simple TCP stream. This greatly
+impacts performance, but also allows rapid development if one doesn't use Linux.
+
+Load Celia via Ganymede into the host as illustrated above, on the virtual
+machine. Then, run `celia_client`. Some environment variables must be set:
+
+* `ARDEN_CELIA_CLIENT_ADDRESS`: The address to listen for a Celia connection.
+  This should be an address visible to the virtual machine.
+* `ARDEN_CELIA_CLIENT_PORT`: The port to listen for a Celia connection. Defaults
+  to 18625 if unset.
+* `ARDEN_CELIA_CLIENT_FRAME_WIDTH`: The width of the window manager frame on the
+  virtual machine. This only matters on the host, not the virtual machine.
+* `ARDEN_CELIA_CLIENT_FRAME_HEIGHT`: The height of the window manager frame on
+  the virtual machine. This only matters on the host, not the virtual machine.
+* `ARDEN_CELIA_INPUT_CLIENT_ADDRESS`: Where to send input events. Should be the
+  address of the virtual machine.
+* `ARDEN_CELIA_INPUT_CLIENT_PORT`: The port to send input events. Defaults to
+  18626 if unset.

@@ -1,0 +1,47 @@
+button[dialog-box-button, next-button]: {
+	repeat image button[dialog-box-button, next-button];
+};
+
+button[dialog-box-button, option-button]: {
+	repeat image button-background[dialog-box-option];
+
+	.value: text small-font;
+	optional {
+		.key-bind: repeat text(shadowed: true) small-font;
+	};
+};
+
+dialog-box-window[window, dialog-box]: {
+	.background: image panel-background[dialog-box-background];
+	.header: repeat image window-header;
+	.border: repeat image window-border;
+
+	optional {
+		.speaker: {
+			.name: text medium-font;
+			.head: {
+				image dialog-box-speaker-background;
+				image dialog-box-speaker-border;
+				optional {
+					invert peek image dialog-box-speaker-border;
+					skip size * *;
+				};
+				image dialog-box-speaker-border;
+			};
+		};
+
+		.prompt: text medium-font;
+	} any;
+
+	optional {
+		.dialogue: {
+			text small-font;
+			optional text(shadowed: true, break_on_newline: false) small-font;
+		};
+	};
+
+	optional {
+		.next: widget button[dialog-box-button, next-button];
+		.options[]: widget button[dialog-box-button, option-button];
+	} any;
+};

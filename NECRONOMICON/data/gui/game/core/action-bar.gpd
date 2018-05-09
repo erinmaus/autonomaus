@@ -1,0 +1,114 @@
+button[action-bar-slot]: {
+	.border: repeat image button-border;
+
+	optional {
+		.enabled: {
+			invert peek image action-bar-empty-slot-background;
+			invert peek color #333333ff;
+		};
+	};
+
+	.value: {
+		image *;
+		size 30 30;
+		{
+			invert peek size * 1;
+			invert peek size 1 *;
+			invert peek image button-border;
+		} any;
+	} any;
+
+	optional skip size 30 30;
+
+	optional skip repeat {
+		invert peek color #ffcb05ff;
+		{
+			size * 1;
+			size 1 *;
+			color #010101d2;
+		} any;
+	};
+
+	optional {
+		.keybind: repeat text(shadowed: true, break_on_newline: false) small-font;
+	};
+
+	optional {
+		.queued: repeat image spinner-icon;
+	};
+
+	optional {
+		.cooldown: text(shadowed: true) tiny-font;
+	};
+
+	optional {
+		.queued: repeat image spinner-icon;
+	};
+
+	optional skip repeat {
+		invert peek color #ffcb05ff;
+		{
+			size * 1;
+			size 1 *;
+		} any;
+	};
+};
+
+action-bar-stat: {
+	.button: image button-background[action-bar-stat];
+
+	.bar: {
+		repeat image action-bar-stat-background;
+		image action-bar-stat-fill;
+		repeat image action-bar-stat-border;
+	};
+
+	.value: text(shadowed: true) small-font;
+
+	optional {
+		.queued: image spinner-icon;
+	};
+
+	.icon: image *[icon];
+};
+
+action-bar[primary]: {
+	.background: image panel-background;
+	.border: repeat image panel-border;
+
+	.stats: {
+		.life-points: widget action-bar-stat;
+		.prayer-points: widget action-bar-stat;
+		.summoning: widget action-bar-stat;
+		.adrenaline: widget action-bar-stat;
+	};
+
+	optional {
+		.slots[]: widget button[action-bar-slot];
+
+		optional {
+			.revolution-enabled: repeat color #ffcb05ff;
+		};
+
+		.index-button: widget button[shadowed-text-button];
+		.previous-button: widget button[scroll-button];
+		.next-button: widget button[scroll-button];
+
+		.lock-button: widget button[lock-button];
+		.configure-button: widget button[configure-button];
+	};
+
+	optional {
+		.minimize-button: widget button[minimize-button];
+	};
+};
+
+action-bar[auxiliary]: {
+	.background: image panel-background;
+	.border: repeat image panel-border;
+
+	.configure-button: widget button[configure-button];
+	.index-button: widget button[shadowed-text-button];
+
+	.slots[]: widget button[action-bar-slot];
+};

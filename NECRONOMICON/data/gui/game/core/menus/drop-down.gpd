@@ -1,0 +1,30 @@
+button[drop-down-menu]: {
+	.text: {
+		.background: repeat image button-background[drop-down-menu];
+	};
+
+	optional { .arrow: image button[drop-down-menu-open-button]; };
+
+	.text: {
+		text(shadowed: true) small-font;
+	};
+};
+
+menu[drop-down-menu]: {
+	.button: widget button[drop-down-menu];
+
+	rewind optional {
+		find image menu-background[drop-down-menu];
+		.background: image menu-background[drop-down-menu];
+		.border: repeat image menu-border[drop-down-menu];
+		optional {
+			.active: color #003652ff;
+		};
+
+		.options[]: text(shadowed: true) small-font;
+
+		optional {
+			.scroll-bar: widget button[vertical-scroll-bar];
+		};
+	};
+};

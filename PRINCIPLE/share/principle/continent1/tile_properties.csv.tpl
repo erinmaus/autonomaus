@@ -1,0 +1,1 @@
+candidate_tag, tile_x, tile_y, tile_layer, num_vertices, num_unique_vertices, num_triangles, num_token_intersections, left_triangles, right_triangles, top_triangles, bottom_triangles

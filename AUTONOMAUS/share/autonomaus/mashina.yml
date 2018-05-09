@@ -1,0 +1,144 @@
+common:
+  gameplay:
+    # Number of inventory slots.
+    NUM_INVENTORY_SLOTS: 28
+
+  gui:
+    # How long to wait for an action to perform. For example, withdrawing an
+    # item from the bank.
+    #
+    # The current value is equal to two game ticks.
+    ACTION_WAIT_TIME: 1.2
+
+    # How long to wait, maximum, for a window to open.
+    #
+    # The current value is equal to three game ticks.
+    WINDOW_WAIT_TIME: 1.8
+
+    # How long to wait, maximum, for the right-click menu to appear.
+    #
+    # Normally the right-click menu should open instantly. But there may be a
+    # small delay before it is correctly parsed.
+    RIGHT_CLICK_WAIT_TIME: 0.6
+
+    # How long to wait for a guard to fail before propogating the failure.
+    GUI_GUARD_WAIT_TIME: 0.3
+
+game:
+  ViewCortex:
+    # Margin around the viewport, as a percent, when testing if a point is
+    # visible or not.
+    SAFE_VIEWPORT_MARGIN: 0.05
+
+    # Length of a focus action (i.e., the camera drag path) attempt, as a
+    # percentage of the viewport.
+    MIN_FOCUS_ACTION_LENGTH: 0.3
+    MAX_FOCUS_ACTION_LENGTH: 0.5
+
+    # Deviation of a focus action along the X/Y axes. This value is a percent
+    # relative to the viewport size.
+    FOCUS_ACTION_DEVIATION: 0.05
+  
+  WalkerCortex:
+    # These values correspond to properties in Thoreau.
+    NEIGHBOR_WEIGHT_RADIUS: 1.0
+    WALL_WEIGHT: 4
+    IMPASSABLE_WEIGHT: 4
+    DOOR_WEIGHT: 8
+    PORTAL_WEIGHT: 16
+
+    # The maximum distance from the path to check for optimal visibility.
+    MAX_VISIBILITY_RADIUS: 1
+
+    # The radius to search for a better tile if panning.
+    #
+    # Panning is moving the cursor from the target to adjacent tile when the
+    # tool-tip is active.
+    PAN_RADIUS: 4
+
+    # The maxmium snap distance of a path. If the player moves too far from the
+    # path, it will be abandoned.
+    MAX_SNAP_RADIUS: 16
+
+    # The maximum distance to click when using the minimap.
+    MAX_MINIMAP_RADIUS: 16
+
+    # The maximum distance to click when using the world.
+    MAX_WORLD_RADIUS: 10
+
+  WorldCortex:
+    # The maximum divergence from the desired position.
+    DRIFT: 16
+
+    # Default spray values.
+    DEFAULT_SPRAY_OFFSET_X: 0
+    DEFAULT_SPRAY_OFFSET_Y: 256
+    DEFAULT_SPRAY_OFFSET_Z: 0
+    DEFAULT_SPRAY_COUNT: 8
+    DEFAULT_SPRAY_RADIUS: 192
+
+    # The collision box used to test if a door is open.
+    #
+    # This is a half-size. The actual box will be (2*x, 2*y, 2*z) world units in
+    # size.
+    DOOR_OPEN_HALF_X: 32
+    DOOR_OPEN_HALF_Y: 256
+    DOOR_OPEN_HALF_Z: 32
+
+    # The elevation of the collision box used to test if a door is open.
+    #
+    # Must take into account OPEN_HALF_Y.
+    DOOR_OPEN_OFFSET_Y: 544
+
+    # The threshold to wait for an update.
+    UPDATE_THRESHOLD: 1
+
+gui:
+  common:
+    # Default root GUI content to use if none specified.
+    DEFAULT_GUI: game
+  
+  BankWindowCortex:
+    # Time to wait for items to load. Each time a new item loads, the timer is
+    # reset until no item is loaded. Until then, the bank is considered
+    # 'pending'.
+    #
+    # This value is in seconds.
+    LOAD_TIME: 1.0
+
+    # How long to wait for the bank to load, maximum, in seconds.
+    MAX_LOAD_TIME: 10
+
+    # The width of the scrollable bank region, in pixels.
+    SCROLL_REGION_WIDTH: 440
+
+    # The height of the scrollable bank region, in pixels.
+    SCROLL_REGION_HEIGHT: 370
+
+    # Relative offset from tab[0] top top-left corner of scroll region,
+    # in pixels.
+    SCROLL_REGION_OFFSET_X: 13
+    SCROLL_REGION_OFFSET_Y: -7
+
+    # The dimensions of an item cell, including padding, in pixels.
+    ITEM_WIDTH: 44
+    ITEM_HEIGHT: 44
+
+    # The time to wait when examining items, in seconds.
+    EXAMINE_WAIT_MIN: 0.6
+    EXAMINE_WAIT_MAX: 1.2
+
+  InventoryCortex:
+    # The time to wait when examining items, in seconds.
+    EXAMINE_WAIT_MIN: 0.6
+    EXAMINE_WAIT_MAX: 1.2
+
+  MakeXWindowCortex:
+    # How long to wait for a category to an action, such as category change or
+    # close.
+    ACTION_WAIT_TIME_MIN: 0.6
+    ACTION_WAIT_TIME_MAX: 1.2
+  
+  ProgressWindowCortex:
+    # How long to wait for the window to close after canceling.
+    CLOSE_TIME: 1.8

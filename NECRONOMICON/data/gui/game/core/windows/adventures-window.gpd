@@ -1,0 +1,114 @@
+button[adventures-quest-filter-button]: {
+	.checkbox: repeat image button[adventures-quest-filter-button];
+	.text: text(shadowed: true) *;
+};
+
+button[adventures-quest-button]: {
+	repeat {
+		image button-background;
+		image button-border;
+	} any;
+
+	invert peek color #000000ff;
+
+	.value: text(shadowed: false) small-font;
+
+	skip repeat {
+		color #27220fff;
+		color #e3cccfff;
+	} any;
+};
+
+adventures-quest-content-info[quest-info-overview]: {
+	.background: {
+		color #0b0b0bff;
+		color #111e24ff;
+	} any;
+
+	.border: repeat image panel-border;
+
+	{
+		.statements[]: {
+			peek {
+				peek color #000000ff;
+				image small-font;
+
+				peek {
+					color #ebe076ff;
+					color #eb981fff;
+				} any;
+				image small-font;
+			};
+
+			optional {
+				rewind {
+					image small-font;
+					peek color #ebe076ff;
+				};
+				.label: text(shadowed: true, break_on_newline: false, break_on_color: true) small-font;
+			};
+
+			optional {
+				rewind {
+					image small-font;
+					peek color #eb981fff;
+				};
+
+				.value[]: {
+					rewind {
+						image small-font;
+						peek color #eb981fff;
+					};
+
+					text(shadowed: true, break_on_newline: false, break_on_color: true) small-font;
+				};
+			};
+
+			optional {
+				.show: inside widget button[adventures-quest-button];
+			};
+		};
+
+		.text[]: text(shadowed: false, break_on_newline: false) small-font;
+	} any;
+
+	optional {
+		.scroll-bar: widget button[vertical-scroll-bar];
+	};
+};
+
+adventures-quest-content[generic-window-content]: {
+	.filter: {
+		.order-menu: widget menu[drop-down-menu];
+
+		.filters[]: widget button[adventures-quest-filter-button];
+	};
+
+	.quest-list: widget panel;
+
+	skip repeat text(shadowed: true, break_on_newline: false) *;
+
+	.title: {
+		.background: repeat image header-background;
+		text(shadowed: true) medium-font;
+	};
+
+	.info: widget adventures-quest-content-info;
+
+	.buttons[]: {
+		widget button[adventures-quest-button];
+		widget button[shadowed-text-button];
+		widget button[adventures-quest-filter-button];
+	} any;
+
+	optional {
+		.status: {
+			.background: repeat image header-background;
+			text(shadowed: true) small-font;
+		};
+	};
+
+	optional {
+		.icon: size 50 50;
+	};
+};

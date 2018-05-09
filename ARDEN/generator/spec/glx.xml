@@ -1,0 +1,271 @@
+<registry>
+	<extensions>
+		<extension name="GLX" supported="gl">
+		<require>
+			<command name="glXChooseVisual"/>
+			<command name="glXCreateContext"/>
+			<command name="glXDestroyContext"/>
+			<command name="glXMakeCurrent"/>
+			<command name="glXCopyContext"/>
+			<command name="glXSwapBuffers"/>
+			<command name="glXCreateGLXPixmap"/>
+			<command name="glXDestroyGLXPixmap"/>
+			<command name="glXQueryExtension"/>
+			<command name="glXQueryVersion"/>
+			<command name="glXIsDirect"/>
+			<command name="glXGetConfig"/>
+			<command name="glXGetCurrentContext"/>
+			<command name="glXGetCurrentDrawable"/>
+			<command name="glXWaitGL"/>
+			<command name="glXWaitX"/>
+			<command name="glXUseXFont"/>
+			<command name="glXQueryExtensionsString"/>
+			<command name="glXQueryServerString"/>
+			<command name="glXGetClientString"/>
+			<command name="glXGetCurrentDisplay"/>
+			<command name="glXChooseFBConfig"/>
+			<command name="glXGetFBConfigAttrib"/>
+			<command name="glXGetFBConfigs"/>
+			<command name="glXGetVisualFromFBConfig"/>
+			<command name="glXCreateWindow"/>
+			<command name="glXDestroyWindow"/>
+			<command name="glXCreatePixmap"/>
+			<command name="glXDestroyPixmap"/>
+			<command name="glXCreatePbuffer"/>
+			<command name="glXDestroyPbuffer"/>
+			<command name="glXQueryDrawable"/>
+			<command name="glXCreateNewContext"/>
+			<command name="glXMakeContextCurrent"/>
+			<command name="glXGetCurrentReadDrawable"/>
+			<command name="glXQueryContext"/>
+			<command name="glXSelectEvent"/>
+			<command name="glXGetSelectedEvent"/>
+			<command name="glXGetProcAddressARB"/>
+			<command name="glXCreateContextAttribsARB"/>
+		</require>
+		</extension>
+	</extensions>
+	<commands>
+		<command>
+			<proto><ptype>XVisualInfo*</ptype> <name>glXChooseVisual</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>int</ptype> <name>screen</name></param>
+			<param><ptype>int*</ptype> <name>attribList</name></param>
+		</command>
+		<command>
+			<proto><ptype>GLXContext</ptype> <name>glXCreateContext</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>XVisualInfo*</ptype> <name>vis</name></param>
+			<param><ptype>GLXContext</ptype> <name>shareList</name></param>
+			<param><ptype>Bool</ptype> <name>direct</name></param>
+		</command>
+		<command>
+			<proto>void <name>glXDestroyContext</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>GLXContext</ptype> <name>ctx</name></param>
+		</command>
+		<command>
+			<proto><ptype>Bool</ptype> <name>glXMakeCurrent</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>GLXDrawable</ptype> <name>drawable</name></param>
+			<param><ptype>GLXContext</ptype> <name>ctx</name></param>
+		</command>
+		<command>
+			<proto>void <name>glXCopyContext</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>GLXContext</ptype> <name>src</name></param>
+			<param><ptype>GLXContext</ptype> <name>dst</name></param>
+			<param><ptype>unsigned long</ptype> <name>mask</name></param>
+		</command>
+		<command>
+			<proto>void <name>glXSwapBuffers</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>GLXDrawable</ptype> <name>drawable</name></param>
+		</command>
+		<command>
+			<proto><ptype>GLXPixmap</ptype> <name>glXCreateGLXPixmap</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>XVisualInfo*</ptype> <name>visual</name></param>
+			<param><ptype>Pixmap</ptype> <name>pixmap</name></param>
+		</command>
+		<command>
+			<proto>void <name>glXDestroyGLXPixmap</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>GLXPixmap</ptype> <name>pixmap</name></param>
+		</command>
+		<command>
+			<proto><ptype>Bool</ptype> <name>glXQueryExtension</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>int*</ptype> <name>errorb</name></param>
+			<param><ptype>int*</ptype> <name>event</name></param>
+		</command>
+		<command>
+			<proto><ptype>Bool</ptype> <name>glXQueryVersion</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>int*</ptype> <name>maj</name></param>
+			<param><ptype>int*</ptype> <name>min</name></param>
+		</command>
+		<command>
+			<proto><ptype>Bool</ptype> <name>glXIsDirect</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>GLXContext</ptype> <name>ctx</name></param>
+		</command>
+		<command>
+			<proto><ptype>int</ptype> <name>glXGetConfig</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>XVisualInfo*</ptype> <name>visual</name></param>
+			<param><ptype>int</ptype> <name>attrib</name></param>
+			<param><ptype>int*</ptype> <name>value</name></param>
+		</command>
+		<command>
+			<proto><ptype>GLXContext</ptype> <name>glXGetCurrentContext</name></proto>
+		</command>
+		<command>
+			<proto><ptype>GLXDrawable</ptype> <name>glXGetCurrentDrawable</name></proto>
+		</command>
+		<command>
+			<proto>void <name>glXWaitGL</name></proto>
+		</command>
+		<command>
+			<proto>void <name>glXWaitX</name></proto>
+		</command>
+		<command>
+			<proto>void <name>glXUseXFont</name></proto>
+			<param><ptype>Font</ptype> <name>font</name></param>
+			<param><ptype>int</ptype> <name>first</name></param>
+			<param><ptype>int</ptype> <name>count</name></param>
+			<param><ptype>int</ptype> <name>list</name></param>
+		</command>
+		<command>
+			<proto><ptype>const char*</ptype> <name>glXQueryExtensionsString</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>int</ptype> <name>screen</name></param>
+		</command>
+		<command>
+			<proto><ptype>const char*</ptype> <name>glXQueryServerString</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>int</ptype> <name>screen</name></param>
+			<param><ptype>int</ptype> <name>name</name></param>
+		</command>
+		<command>
+			<proto><ptype>const char*</ptype> <name>glXGetClientString</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>int</ptype> <name>name</name></param>
+		</command>
+		<command>
+			<proto><ptype>Display*</ptype> <name>glXGetCurrentDisplay</name></proto>
+		</command>
+		<command>
+			<proto><ptype>GLXFBConfig*</ptype> <name>glXChooseFBConfig</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>int</ptype> <name>screen</name></param>
+			<param><ptype>const int*</ptype> <name>attribList</name></param>,
+			<param><ptype>int*</ptype> <name>nitems</name></param>
+		</command>
+		<command>
+			<proto><ptype>int</ptype> <name>glXGetFBConfigAttrib</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>GLXFBConfig</ptype> <name>config</name></param>
+			<param><ptype>int</ptype> <name>attribute</name></param>
+			<param><ptype>int*</ptype> <name>value</name></param>
+		</command>
+		<command>
+			<proto><ptype>GLXFBConfig*</ptype> <name>glXGetFBConfigs</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>int</ptype> <name>screen</name></param>
+		 	<param><ptype>int*</ptype> <name>nelements</name></param>
+		 </command>
+		<command>
+			<proto><ptype>XVisualInfo*</ptype> <name>glXGetVisualFromFBConfig</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+		  	<param><ptype>GLXFBConfig</ptype> <name>config</name></param>
+		  </command>
+		<command>
+			<proto><ptype>GLXWindow</ptype> <name>glXCreateWindow</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>GLXFBConfig</ptype> <name>config</name></param>
+		  	<param><ptype>Window</ptype> <name>win</name></param>
+		  	<param><ptype>const int*</ptype> <name>attribList</name></param>
+		  </command>
+		<command>
+			<proto>void <name>glXDestroyWindow</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>GLXWindow</ptype> <name>window</name></param>
+		</command>
+		<command>
+			<proto><ptype>GLXPixmap</ptype> <name>glXCreatePixmap</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>GLXFBConfig</ptype> <name>config</name></param>
+		  	<param><ptype>Pixmap</ptype> <name>pixmap</name></param>
+		  	<param><ptype>const int*</ptype> <name>attribList</name></param>
+		  </command>
+		<command>
+			<proto>void <name>glXDestroyPixmap</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>GLXPixmap</ptype> <name>pixmap</name></param>
+		</command>
+		<command>
+			<proto><ptype>GLXPbuffer</ptype> <name>glXCreatePbuffer</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>GLXFBConfig</ptype> <name>config</name></param>
+			<param><ptype>const int*</ptype> <name>attribList</name></param>
+		</command>
+		<command>
+			<proto>void <name>glXDestroyPbuffer</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>GLXPbuffer</ptype> <name>pbuf</name></param>
+		</command>
+		<command>
+			<proto>void <name>glXQueryDrawable</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>GLXDrawable</ptype> <name>draw</name></param>
+			<param><ptype>int</ptype> <name>attribute</name></param>
+		  	<param><ptype>unsigned int*</ptype> <name>value</name></param>
+		  </command>
+		<command>
+			<proto><ptype>GLXContext</ptype> <name>glXCreateNewContext</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>GLXFBConfig</ptype> <name>config</name></param>
+			<param><ptype>int</ptype> <name>renderType</name></param>
+			<param><ptype>GLXContext</ptype> <name>shareList</name></param>
+			<param><ptype>Bool</ptype> <name>direct</name></param>
+		</command>
+		<command>
+			<proto><ptype>Bool</ptype> <name>glXMakeContextCurrent</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>GLXDrawable</ptype> <name>draw</name></param>
+			<param><ptype>GLXDrawable</ptype> <name>read</name></param>
+			<param><ptype>GLXContext</ptype> <name>ctx</name></param>
+		</command>
+		<command>
+			<proto><ptype>GLXDrawable</ptype> <name>glXGetCurrentReadDrawable</name></proto>
+		</command>
+		<command>
+			<proto><ptype>int</ptype> <name>glXQueryContext</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>GLXContext</ptype> <name>ctx</name></param>
+			<param><ptype>int</ptype> <name>attribute</name></param>
+			<param><ptype>int*</ptype> <name>value</name></param>
+		</command>
+		<command>
+			<proto>void <name>glXSelectEvent</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>GLXDrawable</ptype> <name>drawable</name></param>
+			<param><ptype>unsigned long</ptype> <name>mask</name></param>
+		</command>
+		<command>
+			<proto>void <name>glXGetSelectedEvent</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>GLXDrawable</ptype> <name>drawable</name></param>
+			<param><ptype>unsigned long</ptype> <name>mask</name></param>
+		</command>
+		<command>
+			<proto>GLXContext <name>glXCreateContextAttribsARB</name></proto>
+			<param><ptype>Display*</ptype> <name>dpy</name></param>
+			<param><ptype>GLXFBConfig</ptype> <name>config</name></param>
+			<param><ptype>GLXContext</ptype> <name>share_context</name></param>
+			<param><ptype>Bool</ptype> <name>direct</name></param>
+			<param><ptype>const int*</ptype> <name>attrib_list</name></param>
+		</command>
+	</commands>
+</registry>

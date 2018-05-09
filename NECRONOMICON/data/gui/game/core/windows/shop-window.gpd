@@ -1,0 +1,136 @@
+button[shop-window-tab]: {
+	repeat image tab;
+	skip optional image shop-border;
+
+	.text: text(shadowed: true) small-font;
+};
+
+button[shop-window-display-button]: {
+	image shop-display-mode-icon;
+};
+
+shop-item[x-background]: {
+	.background: image shop-inventory-background;
+};
+
+shop-item[x-item-price]: {
+	find inside text tiny-font;
+	inside { .price: text tiny-font; };
+};
+
+shop-item[x-item-name]: {
+	find inside text small-font;
+	inside { .name: text small-font; };
+};
+
+shop-item[x-item]: {
+	find inside image item;
+	inside { .item: image item; };
+};
+
+shop-window-inventory: {
+	find size * 52;
+
+	.items[]: widget shop-item[x-background];
+	.items[]: widget shop-item[x-item-price];
+
+	optional skip repeat image currency-icon;
+
+	optional { .items[]: widget shop-item[x-item-name]; };
+
+	.items[]: widget shop-item[x-item];
+
+	optional skip repeat image currency-icon;
+};
+
+shop-window[window]: {
+	.background: image panel-background;
+
+	skip repeat {
+		size * 4;
+		size 4 *;
+	} any;
+
+	optional {
+		.scroll-bar: widget button[vertical-scroll-bar];
+	};
+
+	optional {
+		{
+			.freebies: widget shop-window-inventory;
+			.inventory: widget shop-window-inventory;
+		};
+
+		.inventory: widget shop-window-inventory;
+	} any;
+
+	find inside image tab;
+
+	.tabs[]: widget button[shop-window-tab];
+
+	.display-full-button: widget button[shop-window-display-button];
+	.display-brief-button: widget button[shop-window-display-button];
+
+	skip text(shadowed: true) small-font;
+
+	optional skip {
+		size * *;
+		text(shadowed: true, break_on_newline: false) tiny-font;
+	};
+
+	skip repeat image shop-border;
+
+	optional {
+		.selected-item: {
+			.name: text(shadowed: true) small-font;
+			.examine[]: text(shadowed: true, break_on_newline: false) small-font;
+			.item: image item;
+		};
+
+		skip text(shadowed: true) small-font;
+	} any;
+
+	skip image shop-border;
+
+	optional {
+		.description[]: {
+			text(shadowed: true, break_on_newline: false) small-font;
+			text(shadowed: true, break_on_newline: false) tiny-font;
+		} any;
+	};
+
+	skip image shop-border;
+
+	skip text(shadowed: true) small-font;
+
+	.transaction: {
+		.unit-price: text(shadowed: true) medium-font;
+		.transaction-buttons[]: widget button[shadowed-text-button];
+
+		skip text(shadowed: true, break_on_color: true) small-font;
+		optional skip image currency-icon;
+		.coins: text(shadowed: true) small-font;
+
+		skip text(shadowed: true, break_on_color: true) small-font;
+		optional skip image currency-icon;
+		.price: text(shadowed: true) small-font;
+
+		.complete: widget button[text-button];
+	};
+
+	skip image shop-border;
+
+	skip repeat {
+		color #01010144;
+		size * 4;
+		size 4 *;
+	} any;
+
+	.border: repeat image window-border;
+
+	.title: text(break_on_color: true) big-font;
+	skip repeat text big-font;
+
+	.info-button: widget button[info-button];
+	.close-button: widget button[close-button];
+};

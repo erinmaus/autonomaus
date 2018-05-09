@@ -1,0 +1,52 @@
+button[home-teleport-checkbox]: {
+	image button[checkbox-button];
+};
+
+home-teleport-window[window]: {
+	.background: image panel-background;
+
+	{
+		.f2p: peek image home-teleport-map[f2p];
+		.p2p: peek image home-teleport-map[p2p];
+	} any;
+
+	.map: image home-teleport-map;
+
+	.icons[]: {
+		optional {
+			peek image p2p-icon;
+			skip repeat image p2p-icon;
+		};
+
+		{
+			.unlocked: image home-teleport-icon;
+			.locked: size 40 40;
+			.locked: size 46 42;
+		} any;
+	};
+
+	optional {
+		.hover-icon: {
+			size 50 50;
+			size 45 45;
+		} any;
+	};
+
+	.header: repeat image window-header;
+
+	.border: repeat {
+		image panel-header;
+		image panel-border;
+	} any;
+
+	.title: text(shadowed: true) medium-font;
+
+	.close-button: widget button[close-button];
+
+	.quick-charges: {
+		skip repeat image button-border;
+		skip text(shadowed: true) small-font;
+		.charges: text(shadowed: true) small-font;
+		.toggle: widget button[home-teleport-checkbox];
+	};
+};

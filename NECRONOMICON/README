@@ -1,0 +1,37 @@
+NECRONOMICON
+================================================================================
+NECRONOMICON contains resources from `[R...E]` used by various [hdt]
+applications, such as texture names.
+
+Components
+================================================================================
+data
+--------------------------------------------------------------------------------
+- Resources used to map data to 'things'
+
+necronomicon
+--------------------------------------------------------------------------------
+- MoonScript module to parse data
+- Provides access to resource mapping in a straight-forward way
+
+Usage
+================================================================================
+The environment variable 'NECRONOMICON_DATA_PATH' must be defined. It should
+point to the 'data' directory.
+
+License
+================================================================================
+[bk]door.maus reserves all rights to NECRONOMICON.
+
+Copyright
+================================================================================
+Copyright 2016 [bk]door.maus.
+
+Look, but don't touch. And remember... Feed your head, feed your head.
+
+Dedication
+================================================================================
+Excerpt from essay *Supernatural Horror in Literature*, by H. P. Lovecraft:
+
+> The oldest and strongest emotion of mankind is fear, and the oldest and
+> strongest kind of fear is fear of the unknown.

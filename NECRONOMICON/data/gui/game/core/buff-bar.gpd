@@ -1,0 +1,29 @@
+buff-status[buff]: {
+	.buff: image *;
+	optional inside { .time: text(shadowed: true) tiny-font; };
+
+	repeat {
+		peek color #5a9619ff;
+		{
+			size * 1;
+			size 1 *;
+		} any;
+	};
+};
+
+buff-status[debuff]: {
+	.buff: image *;
+	optional inside { .time: text(shadowed: true) small-font; };
+
+	repeat {
+		peek color #cc0000ff;
+		{
+			size * 1;
+			size 1 *;
+		} any;
+	};
+};
+
+buff-bar[pop-up]: {
+	.status[]: widget buff-status;
+};

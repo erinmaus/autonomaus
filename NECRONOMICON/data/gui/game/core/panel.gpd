@@ -1,0 +1,56 @@
+button[panel-button]: {
+	optional image button-background;
+	image button;
+};
+
+panel: {
+	find image panel-background;
+	invert peek widget *[window];
+	invert peek widget *[pop-up];
+
+	optional {
+		.content: widget *[panel-content];
+	};
+
+	find {
+		image panel-header;
+		image panel-border;
+	} any;
+
+	.header: optional repeat image panel-header;
+	.border: repeat image panel-border;
+
+	optional {
+		.title: {
+			.text: text(newline-break: true, shadowed: true) medium-font;
+			.icon: image *;
+		};
+	};
+
+	optional {
+		.close-button: widget button[panel-button];
+	};
+
+	optional {
+		optional image panel-border;
+		image panel-tab-background;
+		repeat image panel-border;
+
+		.tabs[]: {
+			image tab;
+			.icon: image *;
+		};
+
+		optional {
+			.scroll-left: image button[scroll-horizontal-button];
+		};
+
+		optional {
+			.scroll-right: image button[scroll-horizontal-button];
+		};
+	};
+
+	optional {
+		.close-button: widget button[panel-button];
+	};
+};

@@ -1,0 +1,6 @@
+*.vcxproj
+*.vcxproj*
+*.sln
+.vs
+Debug
+.output/

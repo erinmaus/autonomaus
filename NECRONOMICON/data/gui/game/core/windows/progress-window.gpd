@@ -1,0 +1,45 @@
+progress-bar: {
+	.background: repeat image progress-bar-background;
+	optional { .fill: repeat image progress-bar-fill; };
+	optional {
+		.value: text(shadowed: false) small-font;
+		repeat skip inside image small-font;
+	};
+};
+
+progress-window[window]: {
+	.background: image panel-background;
+
+	.border: repeat {
+		image window-header;
+		image window-border;
+	} any;
+
+	.close-button: widget button[close-button];
+
+	skip size 290 *;
+
+	.item: {
+		skip image item-background;
+		image item;
+	};
+
+	.item-name: text(shadowed: true) medium-font;
+
+	.time: {
+		.icon: image hourglass-icon;
+		.value: text(shadowed: true, break_on_color: true) medium-font;
+	};
+
+	.xp: {
+		optional repeat skip color #fbff5bff;
+		optional skip image panel-background;
+		text(shadowed: false) medium-font;
+
+		.icon: image *;
+	};
+
+	.progress-bar: widget progress-bar;
+
+	.cancel-button: widget button[big-text-button];
+};

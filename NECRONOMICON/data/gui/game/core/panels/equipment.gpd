@@ -1,0 +1,102 @@
+equipment-panel-content[panel-content]: {
+	.background: repeat image panel-background;
+
+	optional {
+		.player-3d-view: {
+			.background: repeat image player-3d-view-background;
+			.player: size * *;
+		};
+	};
+
+	optional {
+		.scroll-bar: widget button[vertical-scroll-bar];
+	};
+
+	.items[]: {
+		.background: image button-background;
+	};
+
+	.items[]: {
+		.icon: image equipment-slot-icon;
+		.item: image item;
+	} any;
+
+	optional {
+		.weight: {
+			.icon: image weight-icon;
+			.value: text small-font;
+		};
+	};
+
+	.buttons[]: widget button;
+};
+
+equipment-panel-content-stat: {
+	repeat image button-border;
+
+	.fill: image equipment-panel-stat-fill;
+	.icon: image *[icon];
+	.value: text(shadowed: true) small-font;
+	.stat: text(shadowed: true) small-font;
+};
+
+equipment-panel-stat-row: {
+	.background: {
+		color #071820ff;
+		color #1c2c34ff;
+		color #38312aff;
+		color #1b1915ff;
+	} any;
+
+	.label: text(shadowed: true) small-font;
+
+	.value[]: {
+		.text: text(shadowed: true) small-font;
+
+		{
+			.border: repeat image button-border;
+			{
+				{
+					.text: text(shadowed: true) small-font;
+					.icon: image *;
+				};
+				{
+					.icon: image *;
+					.text: text(shadowed: true) small-font;
+				};
+			} any;
+		};
+	} any;
+};
+
+button[equipment-panel-category-tab]: {
+	repeat image tab;
+	.text: text(shadowed: true) small-font;
+};
+
+equipment-panel-category: {
+	.title: text(shadowed: true) medium-font;
+	optional {
+		.tabs[]: widget button[equipment-panel-category-tab];
+	};
+
+	.border: repeat image button-border;
+
+	.rows[]: widget equipment-panel-stat-row;
+};
+
+equipment-panel-content[window-content]: {
+	.current-stats[]: widget equipment-panel-content-stat;
+	.categories[]: widget equipment-panel-category;
+
+	.player-3d-view: {
+		repeat image player-3d-view-background;
+		size * *;
+	};
+
+	.items[]: repeat image button-background;
+	.items[]: {
+		.icon: image equipment-slot-icon;
+		.item: image item;
+	} any;
+};

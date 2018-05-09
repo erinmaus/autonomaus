@@ -1,0 +1,178 @@
+bank-inventory-panel: {
+	.background: image panel-background;
+
+	optional {
+		.slots[]: image item-background;
+	};
+
+	optional {
+		.items[]: image item;
+	};
+
+	.border: repeat image panel-border;
+};
+
+bank-slots-usage-panel: {
+	.border: repeat image button-border;
+
+	skip image bank-slots-usage-icon;
+
+	.f2p: repeat text tiny-font;
+
+	skip image bank-slots-usage-icon;
+
+	.p2p: repeat text tiny-font;
+
+	.add-button: repeat widget button[small-button, image-button];
+
+	optional skip repeat image notification-border;
+};
+
+button[bank-tab-button]: {
+	image tab;
+	optional image tab[hover];
+	optional image tab[active];
+
+	invert peek image add-tab-icon;
+
+	.icon: optional {
+		invert peek image tab;
+		image *;
+	};
+};
+
+button[bank-add-tab-button]: {
+	image tab;
+	optional image tab[hover];
+	optional image tab[active];
+
+	.icon: image add-tab-icon;
+};
+
+button[bank-equipment-button]: {
+	size 32 32;
+	.icon: image *;
+};
+
+button[bank-pin-entry-number]: {
+	.background: image button-background;
+	{
+		.value: text(shadowed: true) medium-font;
+		.hover: image button-background[hover];
+	} any;
+
+	optional {
+		.clicked: image button-background[clicked];
+	};
+};
+
+bank-pin-entry[window]: {
+	.background: image panel-background;
+
+	skip size * *;
+
+	.numbers[]: widget button[bank-pin-entry-number];
+
+	skip size * *;
+
+	.close-button: widget button[shadowed-text-button];
+	.forgot-button: widget button[shadowed-text-button];
+
+	.status-prompt: text(shadowed: true) small-font;
+	.prompt: text(shadowed: true) small-font;
+
+	.header: image window-header;
+	.border: repeat image window-border;
+	.title: text(shadowed: true) medium-font;
+
+	.index: text(shadowed: true) medium-font;
+};
+
+bank-window[window]: {
+	.inventory: widget bank-inventory-panel;
+	.background: image panel-background;
+
+	skip repeat size * 1;
+
+	.buttons: {
+		.search: widget button[image-button];
+		.pin: widget button[image-button];
+		.configure-presets: widget button[image-button];
+		.load-preset-1: widget button[image-button];
+		.load-preset-2: widget button[image-button];
+		.note-items: widget button[image-button];
+	};
+
+	.usage: widget bank-slots-usage-panel;
+
+	.deposit-buttons: {
+		.inventory: widget button[image-button];
+		.equipment: widget button[image-button];
+		.familiar: widget button[image-button];
+		.coins: widget button[image-button];
+	};
+
+	optional {
+		.equipment: widget equipment-panel-content[window-content];
+		skip repeat size * 1;
+	};
+
+	.tabs[]: widget button[bank-tab-button];
+	optional { .add-tab: widget button[bank-add-tab-button]; };
+
+	skip repeat {
+		invert peek color #fff500ff;
+		size * 1;
+	};
+
+	optional {
+		.move-tab: {
+			peek color #fff500ff;
+			repeat {
+				size * 1;
+				size 1 *;
+			} any;
+
+			image button[scroll-up-button];
+			image button[scroll-up-button];
+		};
+	};
+
+	optional {
+		.scroll-bar: widget button[vertical-scroll-bar];
+	};
+
+	optional {
+		.tab-content-separators[]: {
+			.text: text tiny-font;
+			optional { .separator: size * 1; };
+		};
+	};
+
+	optional skip repeat image item-background;
+
+	optional {
+		.items[]: {
+			image item;
+		};
+	};
+
+	optional skip repeat image item;
+
+	optional {
+		.search-result-message: text(shadowed: true) small-font;
+	};
+
+	.buttons: {
+		.equipment: widget button[bank-equipment-button];
+	};
+
+	.header: repeat image window-header;
+
+	.border: repeat image window-border;
+
+	.title: text(shadowed: true) medium-font;
+
+	.close-button: widget button[close-button];
+	.info-button: widget button[info-button];
+};

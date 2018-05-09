@@ -1,0 +1,122 @@
+lobby-input-field[inactive]: {
+	skip repeat {
+		invert peek image input-background[lobby, inactive];
+		image input-background[lobby];
+	};
+	repeat image input-background[lobby, inactive];
+	invert image input-background[lobby];
+};
+
+lobby-input-field[active]: {
+	skip repeat {
+		invert peek image input-background[lobby, active];
+		image input-background[lobby];
+	};
+	repeat image input-background[lobby, active];
+	invert image input-background[lobby];
+};
+
+lobby-input-field[hover]: {
+	skip repeat {
+		invert peek image input-background[lobby, hover];
+		image input-background[lobby];
+	};
+	repeat image input-background[lobby, hover];
+	invert image input-background[lobby];
+};
+
+button[checkbox, lobby, inactive]: {
+	.text: skip text(shadowed: true) small-font;
+	
+	image button[check-button];
+	invert peek image check-icon;
+};
+
+button[checkbox, lobby, active]: {
+	.text: skip text(shadowed: true) small-font;
+	
+	image button[check-button];
+	image check-icon;
+};
+
+lobby-username-input: {
+	.label: text medium-font;
+	.field: widget lobby-input-field;
+	.value: optional text medium-font;
+	optional skip size 1 *;
+	.forgot-link: text(shadowed: true) small-font;
+	.remember-button: widget button[checkbox, lobby];
+};
+
+lobby-password-input: {
+	.label: text medium-font;
+	.field: widget lobby-input-field;
+	.value: optional text medium-font;
+	optional skip size 1 *;
+	.forgot-link: text(shadowed: true) small-font;
+};
+
+button[lobby, login-button, hover]: {
+	skip image button[lobby, login-button];
+	image button[lobby, login-button, hover];
+	.value: text big-font;
+};
+
+button[lobby, login-button]: {
+	skip image button[lobby, login-button, hover];
+	image button[lobby, login-button];
+	.value: text big-font;
+};
+
+button[lobby, login-button, linked-account-login-button]: {
+	skip image button[linked-account-login-button, hover];
+	image button[linked-account-login-button];
+};
+
+button[lobby, login-button, linked-account-login-button, hover]: {
+	skip image button[linked-account-login-button];
+	image button[linked-account-login-button, hover];
+};
+
+button[lobby, x-lobby-top-right-button]: {
+	repeat(iterations: 9) image button-border;
+};
+
+menu[lobby, lobby-background-menu]: {
+	optional {
+		.content: {
+			.background: image panel-background;
+			.scroll-bar: widget button[vertical-scroll-bar];
+			optional {
+				.hover: size * 15;
+			};
+			.options[]: text(shadowed: true) small-font;
+		
+			.border: repeat image button-border;
+		};
+	};
+
+	.background: repeat image menu-background;
+	.option: text small-font;
+};
+
+lobby-login-prompt: {
+	find image runescape-logo;
+	skip image runescape-logo;
+
+	.background: repeat image window-border[lobby];
+	.username: widget lobby-username-input;
+	.password: widget lobby-password-input;
+
+	.login-buttons[]: widget button[login-button];
+
+	skip text(shadowed: true) small-font;
+
+	.create-account-button: widget button[big-text-button];
+
+	.background-menu: widget menu[lobby, lobby-background-menu];
+
+	.close-button: widget button[x-lobby-top-right-button];
+	.graphics-settings-button: widget button[x-lobby-top-right-button];
+	.volume-button: widget button[x-lobby-top-right-button];
+};

@@ -1,0 +1,46 @@
+button[minimap-world-map-button]: {
+	.icon: image world-map-icon;
+};
+
+button[minimap-run-button]: {
+	.background: repeat image button-background;
+
+	optional {
+		.resting: peek image rest-icon;
+	};
+
+	.icon: {
+		image run-icon;
+		image rest-icon;
+	} any;
+
+	.value: text(shadowed: true) small-font;
+};
+
+button[minimap-compass-button]: {
+	.background: repeat image button-background;
+
+	.compass: image compass-needle-icon;
+};
+
+button[minimap-home-teleport-button]: {
+	.icon: image home-teleport-icon;
+};
+
+minimap-panel-content[panel-content]: {
+	.background: repeat image panel-background;
+
+	.minimap: size * *;
+
+	optional {
+		.compass-button: skip image button-background;
+		.run-button: skip image button-background;
+		.home-teleport-button: skip image button-background;
+		.world-map-button: skip image button-background;
+	};
+
+	.world-map-button: widget button[minimap-world-map-button];
+	.run-button: widget button[minimap-run-button];
+	.compass-button: widget button[minimap-compass-button];
+	.home-teleport-button: widget button[minimap-home-teleport-button];
+};

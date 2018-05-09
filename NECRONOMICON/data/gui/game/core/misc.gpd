@@ -1,0 +1,14 @@
+progress-bar: {
+    .background: repeat image progress-bar-background;
+
+    optional {
+        .fill: repeat image progress-bar-fill;
+    };
+
+    optional {
+        .value: {
+            text tiny-font;
+            skip repeat image tiny-font;
+        };
+    } any;
+};

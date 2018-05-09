@@ -1,0 +1,56 @@
+KOMPROMAT
+================================================================================
+KOMPROMAT is a collection of libraries to render and process draw events from
+ARDEN. These libraries can be used to generate fingerprints for game resources,
+render said resources, etc.
+
+Components
+================================================================================
+Kompromat
+--------------------------------------------------------------------------------
+- Marshals ARDEN events to Kompvter listeners.
+
+Kompvter
+--------------------------------------------------------------------------------
+- Stores render state (buffers and textures).
+- Provides interfaces for draw events.
+
+Kvlc
+--------------------------------------------------------------------------------
+- Useful math, geometry, and collision routines.
+
+Kvncer
+--------------------------------------------------------------------------------
+- Renders game resources.
+
+Kvre
+--------------------------------------------------------------------------------
+- Convenience methods for inspecting resources.
+
+License
+================================================================================
+[bk]door.maus reserves all rights to KOMPROMAT.
+
+Copyright
+================================================================================
+Copyright 2017 [bk]door.maus.
+
+Look, but don't touch. And remember... Feed your head, feed your head.
+
+Dedication
+================================================================================
+*Stealing People's Mail*, from the Dead Kennedy's album *Fresh Fruit for Rotting
+Vegetables*:
+
+
+> We're gonna steal your mail
+>
+> By the pale moonlight
+>
+> We better not get caught
+>
+> We'll be dumped in institutions
+>
+> Where we'll be drugged and shocked
+>
+> 'Til we come out born-again Christians

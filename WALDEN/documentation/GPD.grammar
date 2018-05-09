@@ -1,0 +1,42 @@
+# "GUI Pattern Definition", or GPD for short.
+
+IDENTIFIER := [A-Za-z][A-Za-z0-9_-]*
+NUMBER_LITERAL := [0-9]*
+COLOR_LITERAL := '#' [0-9A-Fa-f]+
+LEFT_PARENTHESIS := '('
+RIGHT_PARENTHESIS := ')'
+LEFT_CURLY := '{'
+RIGHT_CURLY := '}'
+LEFT_BRACKET := '['
+RIGHT_BRACKET := ']'
+FIELD_PREFIX := '.'
+COMMA := ','
+COLON := ':'
+SEMICOLON := ';'
+WILDCARD := '*'
+
+parameter := IDENTIFIER COLON IDENTIFIER
+parameter-list := LEFT_PARENTHESIS  parameter ( COMMA parameter )* RIGHT_PARENTHESIS
+find-decorator := 'find'
+repeat-decorator := 'repeat' parameter-list? expression
+optional-decorator := 'optional' expression
+skip-decorator := 'skip' expression
+peek-decorator := 'peek' expression
+invert-decorator := 'invert' expression
+rewind-decorator := 'rewind' expression
+inside-decorator := 'inside' expression
+expression := ( decorator | statement )
+tag-collection := LEFT_BRACKET IDENTIFIER ( COMMA IDENTIFIER )* RIGHT_BRACKET
+widget := IDENTIFIER tag-collection? COLON expression
+field := FIELD_PREFIX IDENTIFIER ( LEFT_BRACKET RIGHT_BRACKET )? COLON expression
+statement := ( group-statement | match-statement | print-statement ) SEMICOLON
+group-qualifier := 'any' | 'all'
+group-statement := LEFT_CURLY ( field | expression )+ RIGHT_CURLY group-qualifier?
+print-statement := 'print'
+color-match-statement := 'color' COLOR_LITERAL
+image-match-statement := 'image' ( WILDCARD | IDENTIFIER ) tag-collection?
+text-match-statement := 'text' parameter-list? ( WILDCARD | IDENTIFIER ) tag-collection?
+size-match-statement := 'size' ( WILDCARD | NUMBER_LITERAL ) ( WILDCARD | NUMBER_LITERAL )
+widget-match-statement := 'widget' ( WILDCARD | IDENTIFIER ) tag-collection?
+match-statement := text-match-statement | image-match-statement | color-match-statement | size-match-statement
+root := widget+

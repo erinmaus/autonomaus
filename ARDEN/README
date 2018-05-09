@@ -1,0 +1,47 @@
+ARDEN
+================================================================================
+ARDEN extracts pertinent data from `[R...E]`'s OpenGL command stream and
+publishes it to RESIST clients, such as WALDEN, for further processing.
+
+Components
+================================================================================
+Ganymede
+--------------------------------------------------------------------------------
+- Hooks OpenGL API and loads Rosalind into target.
+- When loading OpenGL methods, executes OpenGL method. If matching Rosalind
+  method found, forwards return value (if any) and arguments to Rosalind for
+  further processing.
+
+
+Rosalind
+--------------------------------------------------------------------------------
+- Tracks OpenGL state.
+- Matches patterns in the OpenGL command stream during run-time. When matches
+  are made, publishes event to RESIST.
+
+Celia
+--------------------------------------------------------------------------------
+- Forwards OpenGL calls over the wire.
+- For when running in a virtual machine without GPU pass-through support.
+
+Usage
+================================================================================
+See `USAGE` document in module root.
+
+License
+================================================================================
+[bk]door.maus reserves all rights to ARDEN.
+
+Copyright
+================================================================================
+Copyright 2016-2017 [bk]door.maus.
+
+Look, but don't touch. And remember... Feed your head, feed your head.
+
+Dedication
+================================================================================
+Jacques, from William Shakespeare's *As You Like It*:
+
+> And so, from hour to hour, we ripe and ripe,
+>
+> And then, from hour to hour, we rot and rot

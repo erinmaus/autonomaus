@@ -1,0 +1,41 @@
+lumbridge.chef:
+  names:
+    - chef
+lumbridge.hans:
+  names:
+    - hans
+varrock.lowe:
+  names:
+    - lowe
+mobs.animals.cow:
+  names:
+    - cow
+mobs.animals.duck:
+  names:
+    - duck
+mobs.bosses.araxxor:
+  names:
+    - araxxor
+mobs.bosses.vindicta:
+  names:
+    - vindicta
+    # TODO: Verify.
+    - gorvek and vindicta
+mobs.bosses.gorvek_and_vindicta:
+  names:
+    - vindicta
+    # TODO: Verify.
+    - gorvek and vindicta
+  hidden: ~
+mobs.elite.tormented_demon:
+  names:
+    - tormented demon
+mobs.humanoids.goblin:
+  names:
+    - goblin
+mobs.humans.guard:
+  names:
+    - guard
+mobs.mechanical.dummy:
+  names:
+    - training dummy

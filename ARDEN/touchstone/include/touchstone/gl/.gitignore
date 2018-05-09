@@ -1,0 +1,6 @@
+# These files are generated during the build process.
+calls.hpp.inl
+dispatch.hpp.inl
+enums.hpp
+immediateDispatch.hpp.inl
+traceBuilder.hpp.inl

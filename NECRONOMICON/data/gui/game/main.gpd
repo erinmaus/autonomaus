@@ -1,0 +1,71 @@
+root: {
+	.main: widget main;
+} any;
+
+main: {
+	find image panel-background;
+
+	optional {
+		.active-panel: {
+			invert peek widget ribbon;
+			widget panel;
+		};
+	};
+
+	.ribbon: widget ribbon;
+	.action-bar: {
+		.primary: widget action-bar[primary];
+		optional {
+			.auxiliary[]: widget action-bar[auxiliary];
+		};
+	};
+
+	.panels[]: widget panel;
+
+	optional {
+		find widget target;
+		.target: widget target;
+	};
+	optional { 
+		find widget buff-bar;
+		.buff-bar: widget buff-bar;
+	};
+	optional {
+		find widget target;
+		.hover-target: widget target;
+	};
+
+	optional {
+		find image panel-background;
+		.windows[]: widget *[window];
+	};
+
+	optional {
+		find image panel-background;
+		.pop-ups[]: widget *[pop-up];
+	};
+
+	optional {
+		.ribbon: widget ribbon[hover];
+	};
+
+	optional {
+		find widget menu[right-click];
+		.right-click-menu: widget menu[right-click];
+	};
+
+	optional {
+		find widget tool-tip[hover];
+		.hover-tool-tip: widget tool-tip[hover];
+	};
+
+	optional {
+		find image item;
+		.dragged-item: image item;
+	};
+
+	optional {
+		find image click;
+		.click: image click;
+	};
+};

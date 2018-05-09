@@ -1,0 +1,45 @@
+button[generic-window-tab, inactive]: {
+	repeat image tab[inactive];
+	.text: text medium-font;
+};
+
+button[generic-window-tab, active]: {
+	repeat image tab[active];
+	.text: text medium-font;
+};
+
+window-border: {
+	image window-border;
+
+	repeat {
+		image window-border;
+		image button-border;
+		image panel-border;
+	} any;
+};
+
+generic-window[window]: {
+	.background: image panel-background;
+	.banner: repeat size * 110;
+	.border: repeat image window-border;
+	.title: text(shadowed: true) big-font;
+	.icon: image *;
+
+	repeat image window-content-border;
+
+	.tabs[]: widget button[generic-window-tab, inactive];
+	.active-tab: widget button[generic-window-tab, active];
+
+	optional {
+		.content: widget *[generic-window-content];
+	};
+
+	find inside image button[info-button];
+	.info-button: widget button[info-button];
+	.close-button: widget button[close-button];
+};
+
+loading-window-content[generic-window-content]: {
+	skip color #01010152;
+	skip repeat image spinner;
+};

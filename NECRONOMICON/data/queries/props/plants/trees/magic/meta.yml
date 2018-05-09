@@ -1,0 +1,3 @@
+actions:
+  chop:
+    - [chop, magic tree]

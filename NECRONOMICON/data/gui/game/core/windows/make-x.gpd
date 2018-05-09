@@ -1,0 +1,214 @@
+make-x-items-pane[x-background]: {
+	.background: color #0e0e0eff;
+
+	.border: repeat image input-border;
+
+	.drop-down: {
+		color #0e0e0eff;
+		.border: repeat image input-border;
+	};
+
+	.background: color #111e24ff;
+};
+
+button[make-x-drop-down-menu]: {
+	.button: {
+		{
+			repeat image button-background[drop-down-menu, disabled];
+			.text: text(shadowed: true) small-font;
+		};
+
+		{
+			repeat image button-background[drop-down-menu];
+			.text: text small-font;
+		};
+	} any;
+
+	optional {
+		.menu: {
+			.background: image panel-background;
+
+			.scroll-bar: widget button[vertical-scroll-bar];
+
+			optional {
+				.hover: color #474237ff;
+			};
+
+			.values[]: text(shadowed: true) small-font;
+
+			.border: repeat {
+				size 3 *;
+				size * 3;
+				size 5 5;
+			} any;
+		};
+	};
+};
+
+make-x-items-pane[x-items]: {
+	.items[]: {
+		image item-background;
+		optional image item-background[active];
+
+		optional { .item: image item; };
+		optional { .icon: image *[icon]; };
+	};
+
+	.scroll-bar: widget button[vertical-scroll-bar];
+
+	.drop-down: widget button[make-x-drop-down-menu];
+};
+
+make-x-recipe-pane-header: {
+	.background: color #0e0e0eff;
+	.border: repeat image input-border;
+
+	.icon: {
+		skip image item-background;
+		image item;
+	};
+
+	.name: repeat inside text(shadowed: true, break_on_newline: false) medium-font;
+};
+
+make-x-recipe-pane-row[header]: {
+	.text: text(shadowed: true) medium-font;
+};
+
+make-x-recipe-pane-row-column: {
+	.background: repeat image icon-background;
+	optional {
+		.icon: {
+			invert peek image *[font];
+			image *;
+		};
+	};
+
+	{
+		.text: text(shadowed: true) medium-font;
+		skip image *;
+	} any;
+};
+
+make-x-recipe-pane-row[values]: {
+	.background: repeat image row;
+	.columns[]: widget make-x-recipe-pane-row-column;
+};
+
+make-x-recipe-pane-row[requirement]: {
+	.background: repeat image row;
+
+	.text: text(break_on_newline: false) small-font;
+
+	{
+		.item: image item;
+		.icon: image *;
+	} any;
+
+	{
+		.met: image check-icon;
+		.unmet: image cross-icon;
+	} any;
+
+	optional inside {
+		.quantity: text small-font;
+	};
+};
+
+make-x-recipe-pane-row[material]: {
+	.background: repeat image row;
+
+	.text: text(break_on_newline: false) small-font;
+
+	{
+		.item: image item;
+		.icon: image *;
+	} any;
+
+	inside {
+		.quantity: text small-font;
+	};
+
+	{
+		.met: image check-icon;
+		.unmet: image cross-icon;
+	} any;
+};
+
+make-x-recipe-pane-quantity-input: {
+	.background: color #0e0e0eff;
+	.border: repeat image input-border;
+	optional {
+		.value: text(shadowed: true) *;
+	};
+	optional {
+		.cursor: size 2 *;
+	};
+};
+
+button[make-x-make-button]: {
+	.background: repeat image button-background;
+	.text: text(break_on_color: true) big-font;
+	skip repeat inside image big-font;
+};
+
+make-x-recipe-pane-quantity: {
+	.background: color #0e0e0eff;
+
+	.border: repeat image input-border;
+
+	.background: repeat size * 27;
+
+	.value: widget make-x-recipe-pane-quantity-input;
+
+	.make: widget button[make-x-make-button];
+};
+
+slider[make-x-recipe-slider]: {
+	.minus-button: widget button[minus-button];
+	.plus-button: widget button[plus-button];
+
+	.background: repeat image slider-background;
+
+	optional { .bar: repeat image slider-fill; };
+
+	.handle: image slider-handle;
+};
+
+make-x-recipe-pane[x-slider]: {
+	.slider: widget slider[make-x-recipe-slider];
+};
+
+make-x-recipe-pane: {
+	.background: color #0e0e0eff;
+
+	.border: repeat image input-border;
+
+	.header: widget make-x-recipe-pane-header;
+	.rows[]: widget make-x-recipe-pane-row;
+
+	.scroll-bar: widget button[vertical-scroll-bar];
+
+	.quantity: widget make-x-recipe-pane-quantity;
+};
+
+make-x-window[window]: {
+	.background: image panel-background;
+
+	.border: repeat {
+		size 4 *;
+		size * 4;
+		image window-border;
+	} any;
+
+	.title: size 290 *;
+
+	.items: widget make-x-items-pane[x-background];
+	.recipe: widget make-x-recipe-pane;
+
+	.close-button: widget button[close-button];
+	.info-button: widget button[image-button];
+
+	.items: widget make-x-items-pane[x-items];
+	.recipe: widget make-x-recipe-pane[x-slider];
+};

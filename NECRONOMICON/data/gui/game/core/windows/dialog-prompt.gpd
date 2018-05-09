@@ -1,0 +1,19 @@
+dialog-prompt-window[window, dialog-box]: {
+	.background: image panel-background[dialog-prompt-background];
+
+	.prompt: {
+		invert peek color #000080ff;
+		text small-font;
+	};
+
+	optional {
+		.input: {
+			peek color #000080ff;
+			text small-font;
+		};
+	};
+
+	optional skip size 2 *;
+
+	.border: widget window-border;
+};

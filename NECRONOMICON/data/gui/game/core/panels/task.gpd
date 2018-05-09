@@ -1,0 +1,55 @@
+button[pin-task-button]: {
+    repeat image button[pin-task-button];
+};
+
+task-panel-content[panel-content]: {
+    .background: repeat image panel-background;
+
+    .icon: optional {
+        invert peek image medium-font;
+        image *;
+    };
+
+    .title: repeat text(shadowed: true, break_on_newline: false) medium-font;
+    .objective: repeat {
+        peek color #000000ff;
+        text(shadowed: true, break_on_newline: false) small-font;
+    };
+
+    optional {
+        .progress: widget progress-bar;
+    };
+
+    optional {
+        .hint: {
+            .text: repeat text(break_on_newline: false) small-font;
+            optional {
+                .scroll-button: widget button[vertical-scroll-bar, scroll-button];
+            };
+        };
+    };
+
+    optional {
+        .pages: {
+            skip text(shadowed: true) tiny-font;
+
+            .current: text(shadowed: true) tiny-font;
+            .total: text(shadowed: true) tiny-font;
+        };
+    };
+
+    optional {
+        .previous-button: widget button[text-button];
+        .next-button: widget button[text-button];
+    };
+
+    optional {
+        .pin-button: widget button[pin-task-button];
+    };
+
+    .info-button: widget button[big-text-button];
+
+    optional {
+        .scroll-buttons[]: widget button[scroll-button];
+    } any;
+};

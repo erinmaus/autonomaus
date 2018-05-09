@@ -1,0 +1,51 @@
+target-status[buff]: {
+	optional { .buff: image *; };
+
+	peek color #5a9619ff;
+
+	repeat {
+		size * 1;
+		size 1 *;
+	} any;
+
+	optional inside { .buff: image *; };
+};
+
+target-status[debuff]: {
+	optional { .debuff: image *; };
+
+	peek color #cc0000ff;
+
+	repeat {
+		size * 1;
+		size 1 *;
+	} any;
+};
+
+target[pop-up]: {
+	.background: image panel-background;
+	.border: repeat image panel-border;
+
+	.target: text(shadowed: true) small-font;
+
+	.combat-style: image *;
+	.level: {
+		skip repeat image button-border;
+		{
+			{
+				peek color #000000ff;
+				text(shadowed: true) small-font;
+			};
+
+			text(shadowed: false) small-font;
+		} any;
+	};
+
+	optional { .status[]: widget target-status; };
+
+	.health: {
+		.border: repeat image button-border;
+		.fill: repeat size * 8;
+		.value: text(shadowed: true) small-font;
+	};
+};

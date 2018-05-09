@@ -1,0 +1,378 @@
+grand-exchange-slot[content-before]: {
+	.background: repeat(iterations: 9) image button-border;
+
+	.content: widget grand-exchange-slot-content;
+
+	optional repeat size 170 122;
+
+	.title: text(shadowed: true) medium-font;
+
+	optional repeat size 170 122;
+};
+
+grand-exchange-slot[content-after]: {
+	.background: repeat(iterations: 9) image button-border;
+
+	optional repeat size 170 122;
+
+	.title: text(shadowed: true) medium-font;
+
+	.content: widget grand-exchange-slot-content;
+};
+
+grand-exchange-slot-content[make-offer]: {
+	.buy: widget button[image-button];
+	.sell: widget button[image-button];
+};
+
+grand-exchange-slot-content[empty]: {
+	color #8080805f;
+	size 170 122;
+};
+
+grand-exchange-progress-bar: {
+	skip repeat {
+		size 1 *;
+		size * 1;
+	} any;
+
+	skip color #3025209b;
+
+	optional {
+		.complete: color #3f821eff;
+		.pending: color #c68b01ff;
+		.canceled: color #8a0010ff;
+		.unknown: size * 13;
+	} any;
+
+	skip repeat {
+		size 3 *;
+		size * 3;
+	} any;
+};
+
+grand-exchange-slot-content[offer]: {
+	{
+		.progress: widget grand-exchange-progress-bar;
+		.text: text(shadowed: false) small-font;
+	} any;
+
+	.item: {
+		skip image item-background;
+		optional image item;
+	};
+
+	.name: text(shadowed: true, break_on_newline: false, break_on_color: true) small-font;
+	.price: text(shadowed: true, break_on_newline: false) small-font;
+};
+
+grand-exchange-slot-content[lent-item]: {
+	.item: {
+		skip image item-background;
+		optional image item;
+	};
+};
+
+grand-exchange-summary-content[grand-exchange-content]: {
+	.slots[]: widget grand-exchange-slot;
+};
+
+grand-exchange-text-input: {
+	.background: color #0e0e0eff;
+	.border: repeat image input-border;
+	optional {
+		.value: text(shadowed: true) *;
+	};
+	optional {
+		.cursor: size 2 *;
+	};
+};
+
+grand-exchange-search-result: {
+	.button: repeat image button-border;
+
+	skip repeat {
+		size * 1;
+		size 1 *;
+	} any;
+
+	optional {
+		.item: image item;
+	};
+
+	optional {
+		.name: text(shadowed: false, break_on_newline: false) small-font;
+	};
+};
+
+grand-exchange-search: {
+	.icon: image search-icon;
+
+	.query: widget grand-exchange-text-input;
+
+	optional {
+		.message: repeat text(shadowed: true) medium-font;
+	};
+
+	optional {
+		.results[]: widget grand-exchange-search-result;
+	};
+
+	optional {
+		.scroll-bar: widget button[vertical-scroll-bar];
+	};
+};
+
+grand-exchange-offer-quantity: {
+	.title: text(shadowed: true) medium-font;
+
+	.query: widget grand-exchange-text-input;
+
+	optional {
+		.decrement-button: repeat image button[decrement-button];
+		.increment-button: repeat image button[increment-button];
+
+		.add-1: widget button[shadowed-text-button];
+		.add-10: widget button[shadowed-text-button];
+		.add-100: widget button[shadowed-text-button];
+		.add-10000: widget button[shadowed-text-button];
+	};
+};
+
+grand-exchange-offer-price: {
+	.title: text(shadowed: true) medium-font;
+	.query: widget grand-exchange-text-input;
+
+	optional {
+		.decrement-button: repeat image button[decrement-button];
+		.increment-button: repeat image button[increment-button];
+
+		.minus-5-percent: widget button[shadowed-text-button];
+		.market-price: widget button[image-button];
+		.plus-5-percent: widget button[shadowed-text-button];
+	};
+};
+
+grand-exchange-make-buy-offer-content[grand-exchange-content]: {
+	.search: widget grand-exchange-search;
+
+	.confirm-offer-button: widget button[big-text-button];
+
+	skip color #ffffff0a;
+
+	.previous: image previous-icon;
+
+	repeat skip {
+		size 1 *;
+		size * 1;
+	} any;
+
+	.item: {
+		.name: text(shadowed: true) medium-font;
+		.examine: text(shadowed: true, break_on_newline: false) small-font;
+	};
+
+	.offer-type: {
+		.text: text(shadowed: true) medium-font;
+	};
+
+	.market-price: {
+		.text: text(shadowed: true) small-font;
+	};
+
+	.offer-type: {
+		.icon: image *;
+	};
+
+	.market-price: {
+		.icon: image *;
+	};
+
+	.item: {
+		repeat skip {
+			image item-background;
+			image item-foreground;
+		} any;
+		optional { .icon: image item; };
+	};
+
+	.quantity: widget grand-exchange-offer-quantity;
+	.price: widget grand-exchange-offer-price;
+
+	optional {
+		.total: {
+			.border: repeat image button-border;
+			.value: text(shadowed: true) medium-font;
+		};
+	};
+};
+
+grand-exchange-make-sell-offer-content[grand-exchange-content]: {
+	.confirm-offer-button: widget button[big-text-button];
+
+	skip color #ffffff0a;
+
+	.previous: image previous-icon;
+
+	repeat skip {
+		size 1 *;
+		size * 1;
+	} any;
+
+	.item: {
+		.name: text(shadowed: true) medium-font;
+		.examine: text(shadowed: true, break_on_newline: false) small-font;
+	};
+
+	.offer-type: {
+		.text: text(shadowed: true) medium-font;
+	};
+
+	.market-price: {
+		.text: text(shadowed: true) small-font;
+	};
+
+	.offer-type: {
+		.icon: image *;
+	};
+
+	.market-price: {
+		.icon: image *;
+	};
+
+	.item: {
+		repeat skip {
+			image item-background;
+			image item-foreground;
+		} any;
+		optional { .icon: image item; };
+	};
+
+	.quantity: widget grand-exchange-offer-quantity;
+	.price: widget grand-exchange-offer-price;
+
+	.total: {
+		.border: repeat image button-border;
+		.value: text(shadowed: true) medium-font;
+	};
+};
+
+grand-exchange-view-offer-content[grand-exchange-content]: {
+	skip color #ffffff0a;
+
+	.previous: image previous-icon;
+
+	repeat skip {
+		size 1 *;
+		size * 1;
+	} any;
+
+	.item: {
+		.name: text(shadowed: true) medium-font;
+		.examine: text(shadowed: true, break_on_newline: false) small-font;
+	};
+
+	.offer-type: {
+		.text: text(shadowed: true) medium-font;
+	};
+
+	.market-price: {
+		.text: text(shadowed: true) small-font;
+	};
+
+	.offer-type: {
+		.icon: image *;
+	};
+
+	.market-price: {
+		.icon: image *;
+	};
+
+	.item: {
+		repeat skip {
+			image item-background;
+			image item-foreground;
+		} any;
+		optional { .icon: image item; };
+	};
+
+	.quantity: widget grand-exchange-offer-quantity;
+	.price: widget grand-exchange-offer-price;
+
+	.total: {
+		.border: repeat image button-border;
+		.value: text(shadowed: true) medium-font;
+	};
+
+	repeat skip {
+		size 1 *;
+		size * 1;
+	} any;
+	skip color #ffffff0a;
+
+	.status: text(shadowed: true, break_on_newline: false) small-font;
+
+	.progress: widget grand-exchange-progress-bar;
+
+	optional {
+		.abort: image abort-icon;
+	};
+
+	.result[]: {
+		repeat skip {
+			image item-background;
+			image item-foreground;
+		} any;
+		optional { .icon: image item; };
+	};
+};
+
+grand-exchange-inventory: {
+	.background: image panel-background;
+
+	optional {
+		.slots[]: image item-background;
+	};
+
+	optional {
+		.items[]: image item;
+	};
+
+	.border: repeat image panel-border;
+
+	.title: text(shadowed: true) medium-font;
+};
+
+grand-exchange-collect-buttons: {
+	.background: image panel-background;
+
+	.to-inventory: widget button[big-text-button];
+	.to-bank: widget button[big-text-button];
+
+	.border: repeat image panel-border;
+
+	.title: text(shadowed: true) medium-font;
+};
+
+grand-exchange-coins: {
+	.background: image panel-background;
+
+	.icon: image coins-icon;
+
+	.value: text(shadowed: true, break_on_color: true) small-font;
+
+	optional repeat skip text(shadowed: true) small-font;
+
+	.border: repeat image panel-border;
+};
+
+grand-exchange-content[generic-window-content]: {
+	.background: image panel-background;
+	.content: widget *[grand-exchange-content];
+	.border: repeat image panel-border;
+
+	.inventory: widget grand-exchange-inventory;
+	.collect: widget grand-exchange-collect-buttons;
+
+	.coins: widget grand-exchange-coins;
+};

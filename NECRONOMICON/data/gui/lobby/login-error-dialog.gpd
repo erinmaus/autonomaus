@@ -1,0 +1,11 @@
+lobby-login-error-dialog: {
+	find image runescape-logo;
+	skip image runescape-logo;
+
+	.background: repeat image window-border[lobby];
+	.icon: image *[icon];
+	.problem: text(shadowed: true, break_on_newline: false) small-font;
+	.message: text(shadowed: true, break_on_newline: false) small-font;
+
+	.buttons[]: widget button[big-text-button, shadowed];
+};

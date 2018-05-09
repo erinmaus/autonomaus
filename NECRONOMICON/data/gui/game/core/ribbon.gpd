@@ -1,0 +1,30 @@
+button[customize-ribbon-button]: {
+	.value: image button[customize-ribbon-button];
+};
+
+button[ribbon-button]: {
+	{
+		size 32 32;
+		size 30 36;
+		size 30 37;
+	} any;
+	
+	.icon: image *;
+};
+
+ribbon: {
+	.background: image panel-background;
+	.border: repeat image panel-border;
+	.buttons[]: widget button[ribbon-button];
+
+	optional {
+		.customize-button: widget button[customize-ribbon-button];
+		.lock-button: widget button[lock-button];
+	};
+};
+
+ribbon-pop-up[pop-up]: {
+	.background: image panel-background;
+	.buttons[]: widget button[ribbon-button];
+	.border: repeat image panel-border;
+};

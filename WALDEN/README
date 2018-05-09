@@ -1,0 +1,35 @@
+WALDEN
+================================================================================
+WALDEN processes patterns published by ARDEN to construct game state.
+
+Components
+================================================================================
+Chomsky
+--------------------------------------------------------------------------------
+- Native library that implements various pattern matching algorithms
+- Used to efficiently match patterns in the data received from ARDEN
+
+Walden
+--------------------------------------------------------------------------------
+- RESIST client utilizing Chomsky
+- Stores latest copy of game state
+- Sends events when interesting things happen and responds to queries about game
+  state
+
+License
+================================================================================
+[bk]door.maus reserves all rights to WALDEN.
+
+Copyright
+================================================================================
+Copyright 2016 [bk]door.maus.
+
+Look, but don't touch. And remember... Feed your head, feed your head.
+
+Dedication
+================================================================================
+*Americana*, from Laibach's album *Spectre*:
+
+> If you wanna change the system, get out on the streets
+>
+> 'Cause if you don't, you'll hear a different beat

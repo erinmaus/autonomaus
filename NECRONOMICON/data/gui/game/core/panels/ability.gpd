@@ -1,0 +1,42 @@
+ability-panel-content[panel-content]: {
+	.background: repeat image panel-background;
+
+	skip {
+		size * 1;
+		size * 1;
+	};
+
+	.categories[]: {
+		invert peek image filter-icon;
+		.icon: size 20 20;
+	};
+
+	.filter-button: image filter-icon;
+
+	.active: repeat {
+		size * 1;
+		size 1 *;
+	} any;
+
+	optional {
+		.abilities[]: {
+			.background: image button-background;
+		};
+	};
+
+	optional {
+		.abilities[]: {
+			.icon: {
+				image ability;
+				size 30 30;
+			} any;
+		};
+
+		repeat skip {
+				size 1 1;
+				size 32 *;
+				size * 32;
+				color #010101d2;
+		} any;
+	};
+};

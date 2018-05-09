@@ -1,0 +1,8 @@
+root: {
+	.main: widget main;
+} any;
+
+main[lobby]: {
+	widget lobby-login-prompt;
+	widget lobby-login-error-dialog;
+} any;

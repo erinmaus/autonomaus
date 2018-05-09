@@ -1,0 +1,441 @@
+Zeitgeist
+================================================================================
+`viewport_resize` (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Dimensions of viewport, in pixels.
+	width: int;
+	height: int;
+}
+```
+
+Resizes the viewport to `width` by `height` pixels. The default is 800 by 600.
+
+`viewport_save` (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Path to save viewport.
+	filename: string;
+}
+```
+
+Saves viewport to `filename`.
+
+`map_load` (out)
+--------------------------------------------------------------------------------
+```
+{
+	// Path to Continent1 map data.
+	filename: string;
+}
+```
+
+Load data from `filename`.
+
+`map_export` (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Path to save Continent1 map data.
+	filename: string;
+
+	// Whether or not to merge maps.
+	merge: bool;
+}
+```
+
+Exports data from currently loaded map to `filename`. If a map already exists at
+the location, the data from the currently loaded map overwrites any existing
+entries in the map at `filename`. Similarly, any entries in `filename` but not
+in the currently loaded map are untouched. No thumbnail data is exported.
+
+If `merge` is set to true, the tile flags in the currently loaded map are
+appended instead. Whatever existing flags exist in `filename` will remain.
+
+`map_set_tile_flags` (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Tile position.
+	x: int;
+	y: int;
+
+	// Tile flags; any combination of Continent1::Map::tile_flag_*
+	flags: int;
+}
+```
+
+Sets tile flags to `flags` for tile at (`x`, `y`).
+
+`map_unset_tile_flags` (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Tile position.
+	x: int;
+	y: int;
+
+	// Tile flags; any combination of Continent1::Map::tile_flag_*
+	flags: int;
+}
+```
+
+Unsets `flags` from existing tile flags at (`x`, `y`).
+
+`map_append_tile_flags` (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Tile position.
+	x: int;
+	y: int;
+
+	// Tile flags; any combination of Continent1::Map::tile_flag_*
+	flags: int;
+}
+```
+
+Appends `flags` to existing tile flags at (`x`, `y`).
+
+`map_set_tile_elevation` (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Tile position.
+	x: int;
+	y: int;
+
+	// Tile elevation.
+	elevation: float;
+}
+```
+
+Sets the elevation for tile at (`x`, `y`).
+
+`map_click` (out)
+--------------------------------------------------------------------------------
+```
+{
+	// Bounds of click region.
+	left: int;
+	right: int;
+	top: int;
+	bottom: int;
+}
+```
+
+Sent when a map region is clicked.
+
+`scene_node_create` (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Unique name of scene node.
+	name: int;
+}
+```
+
+Creates a scene node identified by `name`. If a node with `name` exists, nothing
+happens. The name 0 is reserved.
+
+`scene_node_destroy` (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Unique name of scene node.
+	name: int;
+}
+```
+
+Destroys the scene node identified by `name`. If a node with `name` doesn't
+exist, nothing happens.
+
+`scene_node_attach_mesh` (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Unique name of scene node.
+	name: int;
+
+	// Index of mesh.
+	index: int;
+
+	// Vertex data.
+	vertex_data: blob;
+
+	// Index data. Indices should be unsigned short.
+	index_data: blob;
+}
+```
+
+Attaches a mesh to the scene node identified by `name`. If a mesh is already
+attached at `index`, it will be replaced by the new data. `index` must be
+greater than zero; other values will do nothing.
+
+`scene_node_detach_mesh` (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Name of scene node.
+	name: int;
+
+	// Index of mesh.
+	index: int;
+}
+```
+
+Detaches a mesh from the scene node identified by `name`. If no mesh is attached
+at `index`, nothing happens.
+
+`scene_node_attach_texture` (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Unique name of scene node.
+	name: int;
+
+	// Index of texture.
+	index: int;
+
+	// Size of texture, in pixels.
+	size:
+	{
+		width: int;
+		height: int;
+	};
+
+	// Texture data. Must be RGBA.
+	data: blob;
+}
+```
+
+Attachs a texture to a scene node identified by `name`. A mesh located at
+`index` will be drawn with the texture. The texture is set regardless of whether
+or not a mesh is attached at `index`. `index` must be greater than zero; other
+values will do nothing.
+
+`scene_node_detach_texture` (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Name of scene node.
+	name: int;
+
+	// Index of mesh.
+	index: int;
+}
+```
+
+Detaches a texture from the scene node identified by `name`.
+
+`scene_node_set_transform` (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Name of scene node.
+	name: int;
+
+	// Transform matrix.
+	transform: float[];
+}
+```
+
+Sets the transform of the scene node identified by `name`. By default, an
+identity transform is used.
+
+`scene_node_set_focus` (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Name of scene node.
+	name: int;
+
+	// Index of mesh to focus on.
+	index: int;
+}
+```
+
+Focuses on the scene node identified by `name`. If `name` is zero, the entire
+scene will be focused on. If `index` is a valid mesh index, the focus will
+additionally be specific to the mesh at `index`.
+
+`widget_create` (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Unique name of widget.
+	name: int;
+}
+```
+
+Creates a widget identified by `name`. If a widget with `name` exists, nothing
+happens. The name 0 is reserved.
+
+`widget_destroy` (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Unique name of widget.
+	name: int;
+}
+```
+
+Destroys widget identified by `name`. If a widget with `name` doesn't exist,
+nothing happens,
+
+`widget_set_geometry` (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Unique name of widget.
+	name: int;
+
+	// Position of widget, in pixels.
+	position:
+	{
+		x: int;
+		y: int;
+	};
+
+	// Size of widget, in pixels.
+	size:
+	{
+		width: int;
+		height: int;
+	};
+
+	// Depth of widget in hierarchy.
+	depth: int;
+}
+```
+
+Sets the geometry of the widget identified by `name`. Widgets are drawn from
+lowest `depth` to highest `depth`.
+
+`widget_set_color` (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Unique name of widget.
+	name: int;
+
+	// Color of widget.
+	//
+	// Each component ranges from 0 to 255.
+	color:
+	{
+		red: int;
+		green: int;
+		blue: int;
+		alpha: int;
+	};
+}
+```
+
+Sets the color of the widget identified by `name`.
+
+`widget_set_selected` (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Unique name of widget.
+	name: int;
+
+	// Whether or not the widget is selected.
+	is_selected: bool;
+}
+```
+
+Sets the selected status of the widget identified by `name` to `is_selected`. By
+default, the value is false.
+
+`widget_set_active` (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Unique name of widget.
+	name: int;
+}
+```
+
+Sets the active widget to the widget identified by `name`. There can only be one
+active widget. If another widget is active, it will be made inactive. If there
+is no widget with `name`, then the active widget will be unset.
+
+`widget_set_texture` (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Unique name of widget.
+	name: int;
+
+	// Size of texture, in pixels.
+	size:
+	{
+		width: int;
+		height: int;
+	};
+
+	// Texture data. Must be RGBA.
+	data: blob;
+}
+```
+
+Sets the texture for the widget identified by `name`.
+
+`widget_set_texture_coordinates` (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Unique name of widget.
+	name: int;
+
+	// Texture coordinates, in texels.
+	top_left, top_right, bottom_left, bottom_right:
+	{
+		s: float;
+		t: float;
+	};
+}
+```
+
+Sets the texture coordinates for the widget identified by `name`.
+
+set_selected_widgets_tint_color (in)
+--------------------------------------------------------------------------------
+```
+{
+	// Tint of widget.
+	//
+	// Each component ranges from 0 to 255.
+	color:
+	{
+		red: int;
+		green: int;
+		blue: int;
+	};
+}
+```
+
+Sets the tint color used when a widget is selected. The default is pure red:
+#FF0000.
+
+`widget_clicked` (out)
+--------------------------------------------------------------------------------
+```
+{
+	// Unique names of widgets under the mouse, from bottom to top.
+	widgets: int[];
+
+	// Selection mode; enumeration, one of:
+	//   - select_topmost
+	//   - select_next
+	//   - select_all
+	//   - unselect_all
+	mode: string;
+}
+```
+
+Fired when one or more widgets are clicked on.

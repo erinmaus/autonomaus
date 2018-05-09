@@ -1,0 +1,787 @@
+Buffer events
+================================================================================
+
+`buffer_create` (out)
+--------------------------------------------------------------------------------
+```
+{
+	// Unique name of buffer.
+	name: int;
+
+	// Enumeration, one of:
+	//   - GL_ARRAY_BUFFER
+	//   - GL_ELEMENT_ARRAY_BUFFER
+	//   - GL_UNIFORM_BUFFER
+	target: string;
+}
+```
+
+Fired when a buffer is first used. Clients should reserve a buffer with the
+provided name.
+
+`buffer_delete` (out)
+--------------------------------------------------------------------------------
+```
+{
+	// Unique name of buffer.
+	name: int;
+}
+```
+
+Fired when a buffer is deleted. All existing references to the named buffer are
+no longer valid. The name can be re-used in the future.
+
+`buffer_allocate` (out)
+--------------------------------------------------------------------------------
+```
+{
+	// Unique name of buffer.
+	name: int;
+
+	// Size of buffer, in bytes.
+	size: int;
+}
+```
+
+Fired when space is reserved for a buffer. If the buffer is already allocated,
+the old data should be discarded. The contents of the buffer are undefined.
+
+`buffer_clear` (out)
+--------------------------------------------------------------------------------
+```
+{
+	// Unique name of buffer.
+	name: int;
+}
+```
+
+Fired when a buffer's contents are discarded. The contents afterwards are
+undefined.
+
+`buffer_update` (out)
+--------------------------------------------------------------------------------
+```
+{
+	// Unique name of buffer.
+	name: int;
+
+	// Offset into the buffer, in bytes.
+	offset: int;
+
+	// The buffer data.
+	data: blob;
+}
+```
+
+Fired when a buffer's contents are updated. The contents, starting at `offset`,
+should be copied from `data`.
+
+Texture events
+================================================================================
+
+`texture_create` (out)
+--------------------------------------------------------------------------------
+```
+{
+	// Unique name of texture.
+	name: int;
+}
+```
+
+Fired when a texture is first used. Clients should reserve a texture with the
+provided name.
+
+`texture_delete` (out)
+--------------------------------------------------------------------------------
+```
+{
+	// Unique name of texture.
+	name: int;
+}
+```
+
+Fired when a texture is deleted. All existing references to the named texture are
+no longer valid. The name can be re-used in the future.
+
+`texture_allocate` (out)
+--------------------------------------------------------------------------------
+```
+{
+	// Unique name of texture.
+	name: int;
+
+	// Enumeration, one of:
+	//   - GL_TEXTURE_2D
+	target: string;
+
+	// Whether or not the texture is compressed.
+	is_compressed: bool;
+
+	// Enumeration, one of:
+	//   - GL_COMPRESSED_RGB_S3TC_DXT1_EXT
+	//   - GL_COMPRESSED_RGBA_S3TC_DXT1_EXT
+	//   - GL_COMPRESSED_RGBA_S3TC_DXT3_EXT
+	//   - GL_COMPRESSED_RGBA_S3TC_DXT5_EXT
+	//   - GL_COMPRESSED_SRGB_S3TC_DXT1_EXT
+	//   - GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT1_EXT
+	//   - GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT3_EXT
+	//   - GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT5_EXT
+	//
+	// This field is only present if the 'is_compressed' field is true.
+	compression_format: string;
+
+	// Enumeration, one of:
+	//   - GL_RED
+	//   - GL_RG
+	//   - GL_RGB
+	//   - GL_RGBA
+	format: string;
+
+	// Width of texture, in pixels.
+	width: int;
+
+	// Height of texture, in pixels.
+	height: int;
+
+	// Depth of texture, in pixels.
+	depth: int;
+}
+```
+
+Fired when space is reserved for a texture. If the texture is already allocated,
+the old data should be discarded. The contents of the texture are undefined.
+
+`texture_update` (out)
+--------------------------------------------------------------------------------
+```
+{
+	// Unique name of texture.
+	name: int;
+
+	// Whether or not the texture is compressed.
+	//
+	// If 'is_compressed' is false, then the fields 'component_format' and
+	// 'component_type' are present.
+	//
+	// Otherwise, the field 'format' is present.
+	is_compressed: bool;
+
+	// Offset into the texture.
+	offset:
+	{
+		x: int;
+		y: int;
+		z: int;
+	};
+
+	// Size of the updated region.
+	size:
+	{
+		x: int;
+		y: int;
+		z: int;
+	};
+
+	// Updated texture contents.
+	data: blob;
+
+	// Enumeration, one of:
+	//   - GL_RED
+	//   - GL_RG
+	//   - GL_RGB
+	//   - GL_RGBA
+	//
+	// This field is only present if the 'is_compressed' field is false.
+	component_format: string;
+
+	// Enumeration, one of:
+	//   - GL_UNSIGNED_BYTE
+	//   - GL_UNSIGNED_SHORT
+	//   - GL_UNSIGNED_INT
+	//   - GL_FLOAT
+	//
+	// This field is only present if the 'is_compressed' field is false.
+	component_type: string;
+
+	// Enumeration, one of:
+	//   - GL_COMPRESSED_RGB_S3TC_DXT1_EXT
+	//   - GL_COMPRESSED_RGBA_S3TC_DXT1_EXT
+	//   - GL_COMPRESSED_RGBA_S3TC_DXT3_EXT
+	//   - GL_COMPRESSED_RGBA_S3TC_DXT5_EXT
+	//   - GL_COMPRESSED_SRGB_S3TC_DXT1_EXT
+	//   - GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT1_EXT
+	//   - GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT3_EXT
+	//   - GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT5_EXT
+	//
+	// This field is only present if the 'is_compressed' field is true.
+	format: string;
+}
+```
+
+Fired when a texture's contents are updated. The region, starting at `offset`,
+should be assigned the contents of `data`.
+
+`texture_copy` (out)
+--------------------------------------------------------------------------------
+```
+{
+	// The dimensions of the region copied.
+	width: int;
+	height: int;
+	depth: int;
+
+	destination:
+	{
+		// Unique name of the destination texture.
+		name: int;
+
+		// Enumeration, one of:
+		//   - GL_TEXTURE_2D
+		target: string;
+		
+		// Offset of the copied region.
+		x: int;
+		y: int;
+		z: int;
+	};
+
+	source:
+	{
+		// Unique name of the source texture.
+		name: int;
+
+		// Enumeration, one of:
+		//   - GL_TEXTURE_2D
+		target: string;
+		
+		// Offset of the copied region.
+		x: int;
+		y: int;
+		z: int;
+	};
+}
+```
+
+Fired when a texture region is copied. The contents of 'destination' will be
+replaced with 'source'.
+
+Draw events
+================================================================================
+
+`draw_current_window` (out)
+--------------------------------------------------------------------------------
+```
+{
+	// Handle of window.
+	handle: int;
+}
+```
+
+Fired when a window is made current.
+
+`draw_set_viewport` (out)
+--------------------------------------------------------------------------------
+```
+{
+	// Dimensions of viewport.
+	x: int;
+	y: int;
+	width: int;
+	height: int;
+}
+```
+
+Fired when the viewport changes.
+
+`draw_frame` (out)
+--------------------------------------------------------------------------------
+```
+{
+	// Nada.
+}
+```
+
+Fired when a frame is complete.
+
+`draw_enabled` (out)
+--------------------------------------------------------------------------------
+```
+{
+	// Nada.
+}
+```
+
+Fired when expensive draw patterns are enabled.
+
+`draw_disabled` (out)
+--------------------------------------------------------------------------------
+```
+{
+	// Nada.
+}
+```
+
+Fired when expensive draw patterns are disabled.
+
+`draw_gui` (out)
+--------------------------------------------------------------------------------
+```
+{
+	vertex_attributes:
+	{
+		<vertex_attribute_name>:
+		{
+			// Name of array buffer bound to the attribute.
+			buffer: int;
+
+			// Number of components.
+			num_components: int;
+
+			// Enumeration, one of:
+			//   - GL_BYTE
+			//   - GL_UNSIGNED_BYTE
+			//   - GL_SHORT
+			//   - GL_UNSIGNED_SHORT
+			//   - GL_INT
+			//   - GL_UNSIGNED_INT
+			//   - GL_HALF_FLOAT
+			//   - GL_FLOAT
+			//   - GL_DOUBLE
+			//   - GL_FIXED
+			//   - GL_INT_2_10_10_10_REV
+			//   - GL_UNSIGNED_INT_2_10_10_10_REV
+			//   - GL_UNSIGNED_INT_10F_11F_11F_REV
+			format: string;
+
+			// Whether or not the components are normalized.
+			normalized: bool;
+
+			// Stride between elements, in bytes.
+			stride: int;
+
+			// Offset from beggining, in bytes.
+			offset: int;
+		};
+	};
+
+	offset:
+	{
+		// Starting offset of index data, in bytes.
+		start: int;
+
+		// Ending offset of index data, in bytes.
+		end: int;
+	};
+
+	// Name of index buffer.
+	index_buffer: int;
+
+	// Type of data in index buffer. Enumeration, one of:
+	//   - GL_UNSIGNED_BYTE
+	//   - GL_UNSIGNED_SHORT
+	//   - GL_UNSIGNED_INT
+	index_format: string;
+
+	// Name of active texture atlas.
+	texture: int;
+
+	// Name of framebuffer bound. 0 means no framebuffer.
+	framebuffer: int;
+
+	// Name of current framebuffer's color attachment texture. 0 if no
+	// framebuffer is bound.
+	color_attachment: int;
+}
+```
+
+Fired when GUI elements are drawn.
+
+`draw_gui_item_icon` (out)
+--------------------------------------------------------------------------------
+```
+{
+	vertex_attributes:
+	{
+		<vertex_attribute_name>:
+		{
+			// Name of array buffer bound to the attribute.
+			buffer: int;
+
+			// Number of components.
+			num_components: int;
+
+			// Enumeration, one of:
+			//   - GL_BYTE
+			//   - GL_UNSIGNED_BYTE
+			//   - GL_SHORT
+			//   - GL_UNSIGNED_SHORT
+			//   - GL_INT
+			//   - GL_UNSIGNED_INT
+			//   - GL_HALF_FLOAT
+			//   - GL_FLOAT
+			//   - GL_DOUBLE
+			//   - GL_FIXED
+			//   - GL_INT_2_10_10_10_REV
+			//   - GL_UNSIGNED_INT_2_10_10_10_REV
+			//   - GL_UNSIGNED_INT_10F_11F_11F_REV
+			format: string;
+
+			// Whether or not the components are normalized.
+			normalized: bool;
+
+			// Stride between elements, in bytes.
+			stride: int;
+
+			// Offset from beggining, in bytes.
+			offset: int;
+		};
+	};
+
+	offset:
+	{
+		// Starting offset of index data, in bytes.
+		start: int;
+
+		// Ending offset of index data, in bytes.
+		end: int;
+	};
+
+	// Name of index buffer.
+	index_buffer: int;
+
+	// Type of data in index buffer. Enumeration, one of:
+	//   - GL_UNSIGNED_BYTE
+	//   - GL_UNSIGNED_SHORT
+	//   - GL_UNSIGNED_INT
+	index_format: string;
+
+	// Name of destination texture.
+	texture: int;
+
+	// Model matrix.
+	model_matrix: blob;
+
+	// View matrix.
+	view_matrix: blob;
+
+	// Projection matrix.
+	projection_matrix: blob;
+}
+```
+
+Fired when GUI elements are drawn into an item icon, 'texture'.
+
+`draw_item_icon` (out)
+--------------------------------------------------------------------------------
+```
+{
+	vertex_attributes:
+	{
+		<vertex_attribute_name>:
+		{
+			// Name of array buffer bound to the attribute.
+			buffer: int;
+
+			// Number of components.
+			num_components: int;
+
+			// Enumeration, one of:
+			//   - GL_BYTE
+			//   - GL_UNSIGNED_BYTE
+			//   - GL_SHORT
+			//   - GL_UNSIGNED_SHORT
+			//   - GL_INT
+			//   - GL_UNSIGNED_INT
+			//   - GL_HALF_FLOAT
+			//   - GL_FLOAT
+			//   - GL_DOUBLE
+			//   - GL_FIXED
+			//   - GL_INT_2_10_10_10_REV
+			//   - GL_UNSIGNED_INT_2_10_10_10_REV
+			//   - GL_UNSIGNED_INT_10F_11F_11F_REV
+			format: string;
+
+			// Whether or not the components are normalized.
+			normalized: bool;
+
+			// Stride between elements, in bytes.
+			stride: int;
+
+			// Offset from beggining, in bytes.
+			offset: int;
+		};
+	};
+
+	// Name of framebuffer the item is being drawn into.
+	framebuffer: int;
+
+	// Name of the active framebuffer's color attachment texture.
+	color_attachment: int;
+
+	// Name of index buffer. If the indices are generated (e.g., glDrawArrays),
+	// this value is <= 0.
+	index_buffer: int;
+
+	// Type of data in index buffer. Enumeration, one of:
+	//   - GL_NONE
+	//   - GL_UNSIGNED_BYTE
+	//   - GL_UNSIGNED_SHORT
+	//   - GL_UNSIGNED_INT
+	index_format: string;
+
+	offset:
+	{
+		// Starting offset of index data. If `index_buffer` is not -1, this
+		// value is in bytes; otherwise, it's the starting index.
+		start: int;
+
+		// Ending offset of index data. If `index_buffer` is not -1, this value
+		// is in bytes; otherwise, it's the ending index.
+		end: int;
+	};
+}
+```
+
+Fired when an item icon is drawn.
+
+`transfer_item_icon_texture` (out)
+--------------------------------------------------------------------------------
+```
+{
+	// Name of source texture.
+	source: int;
+
+	// Name of destination texture.
+	destination: int;
+}
+```
+
+Fired when an item icon is transferred between item icon framebuffers, such as
+for post-processing effects.
+
+`clear_item_icon_buffer` (out)
+--------------------------------------------------------------------------------
+```
+{
+	// Name of texture.
+	texture: int;
+}
+```
+
+Fired when an item icon texture framebuffer attachment is cleared.
+
+`draw_minimap` (out)
+--------------------------------------------------------------------------------
+```
+{
+	// Name of index buffer. If the indices are generated (e.g., glDrawArrays),
+	// this value is <= 0.
+	index_buffer: int;
+
+	// Type of data in index buffer. Enumeration, one of:
+	//   - GL_NONE
+	//   - GL_UNSIGNED_BYTE
+	//   - GL_UNSIGNED_SHORT
+	//   - GL_UNSIGNED_INT
+	index_format: string;
+
+	offset:
+	{
+		// Starting offset of index data. If `index_buffer` is not -1, this
+		// value is in bytes; otherwise, it's the starting index.
+		start: int;
+
+		// Ending offset of index data. If `index_buffer` is not -1, this value
+		// is in bytes; otherwise, it's the ending index.
+		end: int;
+	};
+
+	vertex_attributes:
+	{
+		<vertex_attribute_name>:
+		{
+			// Name of array buffer bound to the attribute.
+			buffer: int;
+
+			// Number of components.
+			num_components: int;
+
+			// Enumeration, one of:
+			//   - GL_BYTE
+			//   - GL_UNSIGNED_BYTE
+			//   - GL_SHORT
+			//   - GL_UNSIGNED_SHORT
+			//   - GL_INT
+			//   - GL_UNSIGNED_INT
+			//   - GL_HALF_FLOAT
+			//   - GL_FLOAT
+			//   - GL_DOUBLE
+			//   - GL_FIXED
+			//   - GL_INT_2_10_10_10_REV
+			//   - GL_UNSIGNED_INT_2_10_10_10_REV
+			//   - GL_UNSIGNED_INT_10F_11F_11F_REV
+			format: string;
+
+			// Whether or not the components are normalized.
+			normalized: bool;
+
+			// Stride between elements, in bytes.
+			stride: int;
+
+			// Offset from beggining, in bytes.
+			offset: int;
+		};
+	};
+
+	// Model matrix.
+	model_matrix: blob;
+
+	// View matrix.
+	view_matrix: blob;
+
+	// Projection matrix.
+	projection_matrix: blob;
+
+	// Name of framebuffer the minimap is drawn into. If this value changes, a
+	// new minimap is being drawn.
+	framebuffer: int;
+
+	// Name of texture attached to framebuffer's COLOR_ATTACHMENT0.
+	color_attachment: int;
+}
+```
+
+Fired when minimap geometry is drawn.
+
+`draw_model`, `draw_terrain`, `draw_water` (out)
+--------------------------------------------------------------------------------
+```
+{
+	// Name of index buffer. If the indices are generated (e.g., glDrawArrays),
+	// this value is <= 0.
+	index_buffer: int;
+
+	// Type of data in index buffer. Enumeration, one of:
+	//   - GL_UNSIGNED_BYTE
+	//   - GL_UNSIGNED_SHORT
+	//   - GL_UNSIGNED_INT
+	index_format: string;
+
+	offset:
+	{
+		// Starting offset of index data. If `index_buffer` is not -1, this
+		// value is in bytes; otherwise, it's the starting index.
+		start: int;
+
+		// Ending offset of index data. If `index_buffer` is not -1, this value
+		// is in bytes; otherwise, it's the ending index.
+		end: int;
+	};
+
+	vertex_attributes:
+	{
+		<vertex_attribute_name>:
+		{
+			// Name of array buffer bound to the attribute.
+			buffer: int;
+
+			// Number of components.
+			num_components: int;
+
+			// Enumeration, one of:
+			//   - GL_BYTE
+			//   - GL_UNSIGNED_BYTE
+			//   - GL_SHORT
+			//   - GL_UNSIGNED_SHORT
+			//   - GL_INT
+			//   - GL_UNSIGNED_INT
+			//   - GL_HALF_FLOAT
+			//   - GL_FLOAT
+			//   - GL_DOUBLE
+			//   - GL_FIXED
+			//   - GL_INT_2_10_10_10_REV
+			//   - GL_UNSIGNED_INT_2_10_10_10_REV
+			//   - GL_UNSIGNED_INT_10F_11F_11F_REV
+			format: string;
+
+			// Whether or not the components are normalized.
+			normalized: bool;
+
+			// Stride between elements, in bytes.
+			stride: int;
+
+			// Offset from beggining, in bytes.
+			offset: int;
+		};
+	};
+
+	// Model matrix.
+	model_matrix: blob;
+
+	// View matrix.
+	view_matrix: blob;
+
+	// Projection matrix.
+	projection_matrix: blob;
+
+	// Bone transforms.
+	bones: blob;
+
+	// Unique name of texture atlas.
+	texture: int;
+}
+```
+
+Fired when a model or terrain in the game world is drawn.
+
+`finalize_world` (out)
+--------------------------------------------------------------------------------
+```
+{
+	vertex_attributes:
+	{
+		<vertex_attribute_name>:
+		{
+			// Name of array buffer bound to the attribute.
+			buffer: int;
+
+			// Number of components.
+			num_components: int;
+
+			// Enumeration, one of:
+			//   - GL_BYTE
+			//   - GL_UNSIGNED_BYTE
+			//   - GL_SHORT
+			//   - GL_UNSIGNED_SHORT
+			//   - GL_INT
+			//   - GL_UNSIGNED_INT
+			//   - GL_HALF_FLOAT
+			//   - GL_FLOAT
+			//   - GL_DOUBLE
+			//   - GL_FIXED
+			//   - GL_INT_2_10_10_10_REV
+			//   - GL_UNSIGNED_INT_2_10_10_10_REV
+			//   - GL_UNSIGNED_INT_10F_11F_11F_REV
+			format: string;
+
+			// Whether or not the components are normalized.
+			normalized: bool;
+
+			// Stride between elements, in bytes.
+			stride: int;
+
+			// Offset from beggining, in bytes.
+			offset: int;
+		};
+	};
+}
+```
+
+Fired when the world is finalized (rendered unto the backbuffer with
+post-processing affects applied).
+
+Timestamp
+================================================================================
+
+All events have a `timestamp` field. It is the result returned by
+`paley_get_current_time` divided by 1000.

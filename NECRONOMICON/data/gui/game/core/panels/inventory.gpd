@@ -1,0 +1,84 @@
+button[item-slot-button]: {
+	image item-background;
+};
+
+inventory-panel-mtx-currency-slot[mtx-bond]: {
+	image item-background;
+	.bond: image mtx-bond-icon;
+	.quantity: text(shadowed: true) tiny-font;
+};
+
+inventory-panel-mtx-currency-slot: {
+	.value: image item;
+};
+
+inventory-panel-currency-pouch: {
+	.background: image panel-background;
+	.border: repeat image panel-border;
+
+	.minimize-button: optional widget button[minimize-button];
+
+	.mtx: {
+		optional {
+			.slots[]: {
+				invert peek widget inventory-panel-mtx-currency-slot;
+				widget button[item-slot-button];
+			};
+			.currencies[]: widget inventory-panel-mtx-currency-slot;
+		};
+
+		optional {
+			.scroll-bar: widget button[vertical-scroll-bar];
+		};
+	};
+
+	skip {
+		size * 1;
+		size * 1;
+	};
+
+	.favorites[]: {
+		optional image item-background;
+		invert {
+			peek widget button[image-button];
+			peek widget button[vertical-scroll-bar];
+		} any;
+
+		.value: image *;
+	};
+
+	optional {
+		.scroll-bar: widget button[vertical-scroll-bar];
+	};
+
+	.currencies-button: widget button[image-button];
+};
+
+inventory-panel-content[panel-content]: {
+	.background: repeat image panel-background;
+
+	optional {
+		.scroll-bar: widget button[vertical-scroll-bar];
+	};
+	
+	optional {
+		.slots[]: widget button[item-slot-button];
+	};
+
+	optional {
+		.items[]: image item;
+	};
+
+	repeat skip {
+		size * 1;
+		size 1 *;
+	} any;
+
+	optional {
+		.buttons[]: widget button[small-button, image-button];
+	};
+
+	.coins: text(shadowed: true) small-font;
+
+	.currency-pouch: optional widget inventory-panel-currency-pouch;
+};

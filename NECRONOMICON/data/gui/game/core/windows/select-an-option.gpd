@@ -1,0 +1,12 @@
+select-an-option-window[window]: {
+	.background: image panel-background;
+
+	.prompt: text(shadowed: true, break_on_newline: false) small-font;
+
+	.options[]: widget button[text-button];
+
+	.border: widget window-border;
+
+	.title: text(shadowed: true) medium-font;
+	.close-button: widget button[close-button];
+};

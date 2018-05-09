@@ -1,0 +1,57 @@
+tool-tip-value[text]: {
+	.text: {
+		{
+			{ peek color #000000ff; peek color #00000000; } any;
+
+			{
+				text(break_on_newline: false, shadowed: true) medium-font;
+				text(break_on_newline: false, shadowed: true) small-font;
+				text(break_on_newline: false, shadowed: true) *;
+			} any;
+		};
+
+		{
+			invert { peek color #000000ff; peek color #00000000; } any;
+			{
+				text(break_on_newline: false, break_on_color: true) medium-font;
+				text(break_on_newline: false, break_on_color: true) small-font;
+				text(break_on_newline: false, break_on_color: true) *;
+			} any;
+		};
+	} any;
+};
+
+tool-tip-value[text, small]: {
+	.text: {
+		text(break_on_newline: false, break_on_color: true, shadowed: false) medium-font;
+		{
+			peek color #000000ff;
+			text(break_on_newline: false, break_on_color: true, shadowed: true) small-font;
+		};
+		{
+			text(break_on_newline: false, break_on_color: true, shadowed: false) small-font;
+			optional text(break_on_newline: false, break_on_color: true, shadowed: true) small-font;
+		};
+	} any;
+};
+
+tool-tip-value[image]: {
+	.image: {
+		invert peek image *[font];
+		image *;
+	};
+};
+
+tool-tip[hover, click-through]: {
+	.background: color #000000ff;
+	.border: repeat image tool-tip-border;
+
+	.values[]: inside widget tool-tip-value;
+};
+
+tool-tip[hover, click-through, small]: {
+	find image tool-tip-border[small];
+
+	.border: repeat image tool-tip-border[small];
+	.values[]: inside widget tool-tip-value[text, small];
+};

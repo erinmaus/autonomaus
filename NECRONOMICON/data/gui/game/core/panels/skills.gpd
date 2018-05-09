@@ -1,0 +1,46 @@
+skills-panel-content[panel-content]: {
+	.background: repeat image panel-background;
+
+	.skills[]: {
+		.background: size 60 *;
+	};
+
+	.skills[]: {
+		.icon: size 25 *;
+	};
+
+	.values[]: {
+		.value: text tiny-font;
+	};
+
+	optional {
+		.scroll-bar: widget button[vertical-scroll-bar];
+	};
+
+	optional skip {
+		size * 1;
+		size * 1;
+	};
+
+	.overall: {
+		.icon: image skills-icon;
+		.value: text small-font;
+		optional {
+			.virtual-value: text small-font;
+		};
+	};
+
+	optional {
+		.combat-level: {
+			.icon: image any-combat-icon;
+			.value: text small-font;
+		};
+	};
+
+	optional {
+		.quest-points: {
+			.icon: image quest-icon;
+			.value: text small-font;
+		};
+	};
+};

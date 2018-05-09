@@ -1,0 +1,36 @@
+hyperlink[quest-hyperlink]: {
+	.status: rewind {
+		skip image tiny-font;
+		{
+			.complete: color #00ff00ff;
+			.started: color #ffff00ff;
+			.active: color #00ffffff;
+			.not-started: color #ff0000ff;
+			.hover: color #ffffffff;
+		} any;
+	};
+
+	.name: text(shadowed: true) tiny-font;
+};
+
+quest-panel-content[panel-content]: {
+	.background: repeat image panel-background;
+
+	.count: text(shadowed: true) small-font;
+
+	optional {
+		.scroll-bar: widget button[vertical-scroll-bar];
+	};
+
+	optional {
+		.quests[]: widget hyperlink[quest-hyperlink];
+	};
+
+	optional {
+		.headers[]: text(shadowed: true) classic-font;
+	};
+
+	skip repeat image panel-separator;
+
+	.quest-points: text(shadowed: true) small-font;
+};
